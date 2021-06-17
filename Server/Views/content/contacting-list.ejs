@@ -3,8 +3,7 @@
 <div class="row">
     <div class="col">
      <!--table-->  
-     <a href="/contacting-list/cadd" id="addButton" class="btn btn-primary mb-1"><i class="fas fa-plus-circle"></i> Add contacting Item</a>
-      
+     <a href="/contacting-list/add" id="addButton" class="btn btn-primary mb-1"><i class="fas fa-plus-circle"></i> Add contacting Item</a>    
 
      <table class="table">
         <thead>
@@ -23,8 +22,8 @@
             <td><%= contacting[count].name %></td>
             <td><%= contacting[count].number %></td>
             <td><%= contacting[count].emailAddress %></td>  
-            <td class="text-center"><a href="/contacting-list/cedit/<%= contacting[count]._id %>" class="btn btn-primary btn-sm edit"><i class="fas fa-edit fa-sm"></i> Update</a></td>
-                <td class="text-center"><a href="/contacting-list/cdelete/<%= contacting[count]._id %>" class="btn btn-danger btn-sm delete"><i class="fas fa-trash-alt fa-sm"></i> Delete</a></td>
+            <td class="text-center"><a href="/contacting-list/edit/<%= contacting[count]._id %>" class="btn btn-primary btn-sm edit"><i class="fas fa-edit fa-sm"></i> Update</a></td>
+                <td class="text-center"><a href="/contacting-list/delete/<%= contacting[count]._id %>" class="btn btn-danger btn-sm delete"><i class="fas fa-trash-alt fa-sm"></i> Delete</a></td>
                  
           </tr>
                  
