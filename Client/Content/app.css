@@ -473,3 +473,10 @@ body{
   color: #1a8791;
   text-decoration: underline;
 }
+.update-cancel{
+  color: white;
+  text-decoration: none;
+}
+.update-cancel:hover{
+  color: white;
+}

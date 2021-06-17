@@ -20,16 +20,18 @@
             <input type="email" class="form-control" placeholder="Enter emailAddress" aria-label="emailAddress" aria-describedby="emailAddress"
             name="emailAddress" value="<%= contacting.emailAddress %>" required>
         </div>
-
-
+         
+        <div class="mb-3">
            <% if(title == "Edit") { %>
                 <button type="submit" id="editButton" class="btn btn-primary"><i class="fas fa-edit fa-lg"></i> Edit</button>
-                <button class="btn btn-danger btn-sm delete"  id="deleteButton"><i class="fas fa-trash-alt fa-sm"></i> Delete</a></button>
+                <button class="btn btn-danger delete"  id="deleteButton"><i class="fas fa-trash-alt fa-lg"></i> Delete</a></button>
             <% } else { %>
                 <button type="submit" id="addButton" class="btn btn-primary"><i class="fas fa-plus-circle fa-lg"></i> Add</button>
             <% } %>  
             
-            <a href="/contacting-list" id="cancelButton" type="button" class="btn btn-warning"><i class="fas fa-undo"></i> Cancel</a>
+             <button type="button" class="btn btn-warning"><a href="/contacting-list" id="cancelButton" class="update-cancel"><i class="fas fa-undo"></i> Cancel</a></button>
+        </div>
+        
         </div>
     </form>
 </div>
