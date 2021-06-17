@@ -1,0 +1,37 @@
+<div class="container bg-light">
+<h1>contacting-list</h1>
+<div class="row">
+    <div class="col">
+     <!--table-->  
+     <a href="/contacting-list/cadd" id="addButton" class="btn btn-primary mb-1"><i class="fas fa-plus-circle"></i> Add contacting Item</a>
+      
+
+     <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Number</th>
+            <th scope="col">EmailAddress</th>
+          </tr>
+        </thead>
+        <tbody>
+
+        <% for(let count=0; count<contacting.length; count++) { %>
+          <tr>
+            <th scope="row"><%= count+1 %></th>
+            <td><%= contacting[count].name %></td>
+            <td><%= contacting[count].number %></td>
+            <td><%= contacting[count].emailAddress %></td>  
+            <td class="text-center"><a href="/contacting-list/cedit/<%= contacting[count]._id %>" class="btn btn-primary btn-sm edit"><i class="fas fa-edit fa-sm"></i> Update</a></td>
+                <td class="text-center"><a href="/contacting-list/cdelete/<%= contacting[count]._id %>" class="btn btn-danger btn-sm delete"><i class="fas fa-trash-alt fa-sm"></i> Delete</a></td>
+                 
+          </tr>
+                 
+          <% } %>
+        </tbody>
+      </table>
+
+    </div>
+</div>
+</div>
