@@ -463,3 +463,13 @@ body{
     top: -31px;
     display: none;
 }
+.register-link
+{
+  color: #0bc9dc;
+  text-decoration: underline;
+}
+.register-link:hover
+{
+  color: #1a8791;
+  text-decoration: underline;
+}
