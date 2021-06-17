@@ -1,0 +1,36 @@
+<div class="container bg-light">
+<div class="row justify-content-lg-center g-3">
+    <h1><%= title %> Contacting Info</h1>
+
+    <form method="POST" class="col-lg-6 col-md-10 col-sm-10">
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="inputGroup-name">Name</span>
+            <input type="text" class="form-control" placeholder="Enter Name" aria-label=" Name" aria-describedby="Clothing Name"
+            name="name" value="<%= contacting.name %>" required>
+        </div>
+
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="inputGroup-name">Number</span>
+            <input type="number" class="form-control" placeholder="Enter Number" aria-label="Enter Number" aria-describedby="number"
+            name="number" value="<%= contacting.number %>" required>
+        </div>
+
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="inputGroup-name">Email</span>
+            <input type="email" class="form-control" placeholder="Enter emailAddress" aria-label="emailAddress" aria-describedby="emailAddress"
+            name="emailAddress" value="<%= contacting.emailAddress %>" required>
+        </div>
+
+
+           <% if(title == "Edit") { %>
+                <button type="submit" id="editButton" class="btn btn-primary"><i class="fas fa-edit fa-lg"></i> Edit</button>
+                <button class="btn btn-danger btn-sm delete"  id="deleteButton"><i class="fas fa-trash-alt fa-sm"></i> Delete</a></button>
+            <% } else { %>
+                <button type="submit" id="addButton" class="btn btn-primary"><i class="fas fa-plus-circle fa-lg"></i> Add</button>
+            <% } %>  
+            
+            <a href="/contacting-list" id="cancelButton" type="button" class="btn btn-warning"><i class="fas fa-undo"></i> Cancel</a>
+        </div>
+    </form>
+</div>
+</div>
