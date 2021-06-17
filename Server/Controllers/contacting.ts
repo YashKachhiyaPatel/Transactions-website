@@ -5,7 +5,7 @@ import { UserDisplayName } from '../Util';
 
 export function DisplayContactingListPage(req: Request, res:Response,next:NextFunction): void
 {
-    Contacting.find(function(err,contactingCollection){
+    Contacting.find({}, null, {sort: {name: 1}},function(err,contactingCollection){
         if(err){
             return console.error(err);
         }
