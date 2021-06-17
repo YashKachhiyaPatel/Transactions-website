@@ -5,12 +5,13 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ProcessContactDeletePage = exports.ProcessContactAddPage = exports.ProcessContactEditPage = exports.DisplayContactAddPage = exports.DisplayContactingEditPage = exports.DisplayContactingListPage = void 0;
 const contacting_1 = __importDefault(require("../Models/contacting"));
+const Util_1 = require("../Util");
 function DisplayContactingListPage(req, res, next) {
     contacting_1.default.find(function (err, contactingCollection) {
         if (err) {
             return console.error(err);
         }
-        res.render('index', { title: 'contacting-list', page: 'contacting-list', contacting: contactingCollection });
+        res.render('index', { title: 'contacting-list', page: 'contacting-list', contacting: contactingCollection, displayName: Util_1.UserDisplayName(req) });
     });
 }
 exports.DisplayContactingListPage = DisplayContactingListPage;
@@ -21,12 +22,12 @@ function DisplayContactingEditPage(req, res, next) {
             console.error(err);
             res.end(err);
         }
-        res.render('index', { title: 'Edit', page: 'contactingupdate', contacting: contactingItemToEdit });
+        res.render('index', { title: 'Edit', page: 'contactingupdate', contacting: contactingItemToEdit, displayName: Util_1.UserDisplayName(req) });
     });
 }
 exports.DisplayContactingEditPage = DisplayContactingEditPage;
 function DisplayContactAddPage(req, res, next) {
-    res.render('index', { title: 'Add', page: 'contactingupdate', contacting: '' });
+    res.render('index', { title: 'Add', page: 'contactingupdate', contacting: '', displayName: Util_1.UserDisplayName(req) });
 }
 exports.DisplayContactAddPage = DisplayContactAddPage;
 function ProcessContactEditPage(req, res, next) {

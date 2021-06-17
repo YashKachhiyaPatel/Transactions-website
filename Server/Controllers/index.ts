@@ -3,32 +3,34 @@ import express, { Request, Response, NextFunction } from 'express';
 import passport from 'passport';
 // create an instance of the User Model
 import User from '../Models/user';
+// import Util Functions
+import { UserDisplayName } from '../Util';
 
 // Display Functions
 
 export function DisplayHomePage(req: Request, res: Response, next: NextFunction): void
 {
-    res.render('index', { title: 'Home', page: 'home' });
+    res.render('index', { title: 'Home', page: 'home', displayName: UserDisplayName(req) });
 }
 
 export function DisplayAboutPage(req: Request, res: Response, next: NextFunction): void
 {
-    res.render('index', { title: 'About Us', page: 'about'  });
+    res.render('index', { title: 'About Us', page: 'about', displayName: UserDisplayName(req)  });
 }
 
 export function DisplayProjectsPage(req: Request, res: Response, next: NextFunction): void
 {
-    res.render('index', { title: 'Our Projects', page: 'projects'  });
+    res.render('index', { title: 'Our Projects', page: 'projects', displayName: UserDisplayName(req)  });
 }
 
 export function DisplayServicesPage(req: Request, res: Response, next: NextFunction): void
 {
-    res.render('index', { title: 'Our Services', page: 'services'  });
+    res.render('index', { title: 'Our Services', page: 'services' , displayName: UserDisplayName(req) });
 }
 
 export function DisplayContactPage(req: Request, res: Response, next: NextFunction): void
 {
-    res.render('index', { title: 'Contact Us', page: 'contact'  });
+    res.render('index', { title: 'Contact Us', page: 'contact', displayName: UserDisplayName(req)  });
 }
 
 //Authentication
@@ -38,10 +40,10 @@ export function DisplayLoginPage(req: Request, res: Response, next: NextFunction
 {
     if(!req.user)
     {
-        return res.render('index', { title: 'Login', page: 'login', messages: req.flash('loginMessage') });
+        return res.render('index', { title: 'Login', page: 'login', messages: req.flash('loginMessage'), displayName: UserDisplayName(req) });
     }
     
-    return res.redirect('/clothing-list');
+    return res.redirect('/contacting-list');
 }
 
 export function ProcessLoginPage(req: Request, res: Response, next: NextFunction): void
@@ -71,7 +73,7 @@ export function ProcessLoginPage(req: Request, res: Response, next: NextFunction
             return next(err);
         }
 
-        return res.redirect('/clothing-list');
+        return res.redirect('/contacting-list');
     });
    })(req, res, next);
 }
@@ -87,10 +89,10 @@ export function DisplayRegisterPage(req: Request, res: Response, next: NextFunct
 {
     if(!req.user)
     {
-        return res.render('index', { title: 'Register', page: 'register', messages: req.flash('registerMessage') });
+        return res.render('index', { title: 'Register', page: 'register', messages: req.flash('registerMessage'), displayName: UserDisplayName(req) });
     }
 
-    return res.redirect('/clothing-list');
+    return res.redirect('/contacting-list');
 }
 
 export function ProcessRegisterPage(req: Request, res: Response, next: NextFunction): void
@@ -120,7 +122,7 @@ export function ProcessRegisterPage(req: Request, res: Response, next: NextFunct
         // after successful registration - login the user
         return passport.authenticate('local')(req, res, () => 
         {
-            return res.redirect('/clothing-list');
+            return res.redirect('/contacting-list');
         });
    });
 }

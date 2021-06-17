@@ -15,7 +15,7 @@ import cors from 'cors';
 
 // authentication objects
 let localStrategy = passportLocal.Strategy; // alias
-
+import User from '../Models/user';
 
 // module for auth messaging and error management
 import flash from 'connect-flash';
@@ -70,6 +70,13 @@ app.use(flash());
 // initialize passport
 app.use(passport.initialize());
 app.use(passport.session());
+
+// implement an Auth Strategy - "local" - username / password
+passport.use(User.createStrategy());
+
+// serialize and deserialize the user data
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
 
 // create routing through event handling
 app.use('/', indexRouter);

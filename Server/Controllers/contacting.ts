@@ -1,5 +1,7 @@
 import expess,{ Request, Response, NextFunction } from 'express';
 import Contacting from '../Models/contacting';
+// import Util Functions
+import { UserDisplayName } from '../Util';
 
 export function DisplayContactingListPage(req: Request, res:Response,next:NextFunction): void
 {
@@ -9,7 +11,7 @@ export function DisplayContactingListPage(req: Request, res:Response,next:NextFu
         }
 
         //printing list
-        res.render('index',{title: 'contacting-list', page: 'contacting-list', contacting: contactingCollection})
+        res.render('index',{title: 'contacting-list', page: 'contacting-list', contacting: contactingCollection, displayName: UserDisplayName(req) })
     });
 }
 
@@ -31,7 +33,7 @@ export function DisplayContactingEditPage(req: Request, res: Response, next: Nex
         }
 
         // show the edit view
-        res.render('index', { title: 'Edit', page: 'contactingupdate', contacting: contactingItemToEdit });
+        res.render('index', { title: 'Edit', page: 'contactingupdate', contacting: contactingItemToEdit, displayName: UserDisplayName(req) });
     });
 }
 
@@ -40,7 +42,7 @@ export function DisplayContactingEditPage(req: Request, res: Response, next: Nex
 export function DisplayContactAddPage(req: Request, res: Response, next: NextFunction): void
 {
     // show the edit view
-    res.render('index', { title: 'Add', page: 'contactingupdate', contacting: '' });
+    res.render('index', { title: 'Add', page: 'contactingupdate', contacting: '', displayName: UserDisplayName(req) });
 }
 
 // Process Functions
