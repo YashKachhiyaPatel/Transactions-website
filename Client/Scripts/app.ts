@@ -10,9 +10,9 @@
         if(!confirm("Are you sure?"))
         {
           event.preventDefault();
-          location.href = '/clothing-list';
-        }       
-      });
+          location.href = '/contacting-list';
+        }              
+      }); 
     }
 
     function Start():void
