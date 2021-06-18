@@ -463,11 +463,11 @@ body{
     display: none;
 }
 
-.update-cancel,.update-delete {
+.update-button {
   color: white;
   text-decoration: none;
 }
-.update-cancel:hover,.update-delete:hover{
+.update-button:hover{
   color: white;
 }
 .backColor{

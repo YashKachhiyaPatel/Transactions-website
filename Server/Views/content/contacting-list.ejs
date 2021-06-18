@@ -24,8 +24,8 @@
             <td><%= contacting[count].number %></td>
             <td><%= contacting[count].emailAddress %></td>  
             <% if(displayName) { %>      
-            <td class="text-center"><a href="/contacting-list/update/<%= contacting[count]._id %>" class="btn btn-primary btn-sm edit"><i class="fas fa-edit fa-sm"></i> Update</a></td>
-                <td class="text-center"><a href="/contacting-list/delete/<%= contacting[count]._id %>" class="btn btn-danger btn-sm delete"><i class="fas fa-trash-alt fa-sm"></i> Delete</a></td>
+            <td class="text-center"><a href="/contacting-list/update/<%= contacting[count]._id %>" class="btn btn-outline-primary btn-sm edit text-white"><i class="fas fa-edit fa-sm"></i> Update</a></td>
+                <td class="text-center"><a href="/contacting-list/delete/<%= contacting[count]._id %>" class="btn btn-outline-danger btn-sm delete text-white"><i class="fas fa-trash-alt fa-sm"></i> Delete</a></td>
                  <% } %>
           </tr>
                  
