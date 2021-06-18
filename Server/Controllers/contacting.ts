@@ -15,7 +15,7 @@ export function DisplayContactingListPage(req: Request, res:Response,next:NextFu
         }
 
         //printing list
-        res.render('index',{title: 'contacting-list', page: 'contacting-list', contacting: contactingCollection, displayName: UserDisplayName(req) })
+        res.render('index',{title: 'Business Contacts', page: 'contacting-list', contacting: contactingCollection, displayName: UserDisplayName(req) })
     });
   }
 }

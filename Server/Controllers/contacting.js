@@ -15,7 +15,7 @@ function DisplayContactingListPage(req, res, next) {
             if (err) {
                 return console.error(err);
             }
-            res.render('index', { title: 'contacting-list', page: 'contacting-list', contacting: contactingCollection, displayName: Util_1.UserDisplayName(req) });
+            res.render('index', { title: 'Business Contacts', page: 'contacting-list', contacting: contactingCollection, displayName: Util_1.UserDisplayName(req) });
         });
     }
 }

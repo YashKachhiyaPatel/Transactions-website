@@ -441,10 +441,11 @@ body{
 
 .login
 {
-    padding: 2rem 1rem;
+    padding: 1rem 1rem;
     margin-bottom: 2rem;
-    background-color: lightgrey;
-    border-radius: .3rem;
+    background-color: rgb(75, 73, 73);
+    border-radius: .6rem;
+    color:rgb(190, 190, 190);
 }
 
 .login input
@@ -474,4 +475,3 @@ body{
   color: white;
   text-align: center;
 }
-
