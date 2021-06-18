@@ -1,23 +1,25 @@
-<div class="container mt-1 bg-light">
+<div class="container mt-1 text-white">
 <h1>Business Contacts list</h1>
 <div class="row">
     <div class="col">
      <!--table-->  
       
-     <table class="table">
+     <table class="table backColor">
         <thead>
           <tr>
             <th scope="col">#</th>
             <th scope="col">Contact Name</th>
             <th scope="col">Contact Number</th>
             <th scope="col">Email Address</th>
+            <th></th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
 
         <% for(let count=0; count<contacting.length; count++) { %>
           <tr>
-            <th scope="row"><%= count+1 %></th>
+            <th scope="row bg1"><%= count+1 %></th>
             <td><%= contacting[count].name %></td>
             <td><%= contacting[count].number %></td>
             <td><%= contacting[count].emailAddress %></td>  
