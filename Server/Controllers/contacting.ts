@@ -5,6 +5,10 @@ import { UserDisplayName } from '../Util';
 
 export function DisplayContactingListPage(req: Request, res:Response,next:NextFunction): void
 {
+  if(!req.user){
+    res.redirect('/login');
+  }
+  else{
     Contacting.find({}, null, {sort: {name: 1}},function(err,contactingCollection){
         if(err){
             return console.error(err);
@@ -13,6 +17,7 @@ export function DisplayContactingListPage(req: Request, res:Response,next:NextFu
         //printing list
         res.render('index',{title: 'contacting-list', page: 'contacting-list', contacting: contactingCollection, displayName: UserDisplayName(req) })
     });
+  }
 }
 
 // Display (E)dit page
@@ -33,7 +38,7 @@ export function DisplayContactingEditPage(req: Request, res: Response, next: Nex
         }
 
         // show the edit view
-        res.render('index', { title: 'Edit', page: 'contactingupdate', contacting: contactingItemToEdit, displayName: UserDisplayName(req) });
+        res.render('index', { title: 'Update', page: 'contactingupdate', contacting: contactingItemToEdit, displayName: UserDisplayName(req) });
     });
 }
 

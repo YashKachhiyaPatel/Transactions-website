@@ -7,12 +7,17 @@ exports.ProcessContactDeletePage = exports.ProcessContactAddPage = exports.Proce
 const contacting_1 = __importDefault(require("../Models/contacting"));
 const Util_1 = require("../Util");
 function DisplayContactingListPage(req, res, next) {
-    contacting_1.default.find({}, null, { sort: { name: 1 } }, function (err, contactingCollection) {
-        if (err) {
-            return console.error(err);
-        }
-        res.render('index', { title: 'contacting-list', page: 'contacting-list', contacting: contactingCollection, displayName: Util_1.UserDisplayName(req) });
-    });
+    if (!req.user) {
+        res.redirect('/login');
+    }
+    else {
+        contacting_1.default.find({}, null, { sort: { name: 1 } }, function (err, contactingCollection) {
+            if (err) {
+                return console.error(err);
+            }
+            res.render('index', { title: 'contacting-list', page: 'contacting-list', contacting: contactingCollection, displayName: Util_1.UserDisplayName(req) });
+        });
+    }
 }
 exports.DisplayContactingListPage = DisplayContactingListPage;
 function DisplayContactingEditPage(req, res, next) {
@@ -22,7 +27,7 @@ function DisplayContactingEditPage(req, res, next) {
             console.error(err);
             res.end(err);
         }
-        res.render('index', { title: 'Edit', page: 'contactingupdate', contacting: contactingItemToEdit, displayName: Util_1.UserDisplayName(req) });
+        res.render('index', { title: 'Update', page: 'contactingupdate', contacting: contactingItemToEdit, displayName: Util_1.UserDisplayName(req) });
     });
 }
 exports.DisplayContactingEditPage = DisplayContactingEditPage;

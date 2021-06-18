@@ -8,9 +8,9 @@
         <thead>
           <tr>
             <th scope="col">#</th>
-            <th scope="col">Name</th>
-            <th scope="col">Number</th>
-            <th scope="col">EmailAddress</th>
+            <th scope="col">Contact Name</th>
+            <th scope="col">Contact Number</th>
+            <th scope="col">Email Address</th>
           </tr>
         </thead>
         <tbody>
@@ -22,7 +22,7 @@
             <td><%= contacting[count].number %></td>
             <td><%= contacting[count].emailAddress %></td>  
             <% if(displayName) { %>      
-            <td class="text-center"><a href="/contacting-list/edit/<%= contacting[count]._id %>" class="btn btn-primary btn-sm edit"><i class="fas fa-edit fa-sm"></i> Update</a></td>
+            <td class="text-center"><a href="/contacting-list/update/<%= contacting[count]._id %>" class="btn btn-primary btn-sm edit"><i class="fas fa-edit fa-sm"></i> Update</a></td>
                 <td class="text-center"><a href="/contacting-list/delete/<%= contacting[count]._id %>" class="btn btn-danger btn-sm delete"><i class="fas fa-trash-alt fa-sm"></i> Delete</a></td>
                  <% } %>
           </tr>
