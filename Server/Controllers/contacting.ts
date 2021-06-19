@@ -36,16 +36,6 @@ export function DisplayContactingEditPage(req: Request, res: Response, next: Nex
     });
 }
 
-
-// Display (C)reate page
-export function DisplayContactAddPage(req: Request, res: Response, next: NextFunction): void
-{
-    // show the edit view
-    res.render('index', { title: 'Add', page: 'contactingupdate', contacting: '', displayName: UserDisplayName(req) });
-}
-
-// Process Functions
-
 // Process (E)dit page
 export function ProcessContactEditPage(req: Request, res: Response, next: NextFunction): void
 {
