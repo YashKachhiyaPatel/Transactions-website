@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ProcessContactDeletePage = exports.ProcessContactEditPage = exports.DisplayContactAddPage = exports.DisplayContactingEditPage = exports.DisplayContactingListPage = void 0;
+exports.ProcessContactDeletePage = exports.ProcessContactEditPage = exports.DisplayContactingEditPage = exports.DisplayContactingListPage = void 0;
 const contacting_1 = __importDefault(require("../Models/contacting"));
 const Util_1 = require("../Util");
 function DisplayContactingListPage(req, res, next) {
@@ -26,10 +26,6 @@ function DisplayContactingEditPage(req, res, next) {
     });
 }
 exports.DisplayContactingEditPage = DisplayContactingEditPage;
-function DisplayContactAddPage(req, res, next) {
-    res.render('index', { title: 'Add', page: 'contactingupdate', contacting: '', displayName: Util_1.UserDisplayName(req) });
-}
-exports.DisplayContactAddPage = DisplayContactAddPage;
 function ProcessContactEditPage(req, res, next) {
     let id = req.params.id;
     let updatedContactingItem = new contacting_1.default({

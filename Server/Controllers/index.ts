@@ -60,7 +60,7 @@ export function ProcessLoginPage(req: Request, res: Response, next: NextFunction
     // are there any login errors?
     if(!user)
     {
-        req.flash('loginMessage', 'Authentication Error');
+        req.flash('loginMessage', 'UnAuthenticated Information');
         return res.redirect('/login');
     }
 

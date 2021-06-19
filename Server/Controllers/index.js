@@ -40,7 +40,7 @@ function ProcessLoginPage(req, res, next) {
             return next(err);
         }
         if (!user) {
-            req.flash('loginMessage', 'Authentication Error');
+            req.flash('loginMessage', 'UnAuthenticated Information');
             return res.redirect('/login');
         }
         req.login(user, (err) => {
