@@ -1,6 +1,8 @@
 //IIFE -- Immediately Invoked Function Expression
 "use strict";
 
+//function to ask while deleting
+
 (function(){
 
     function confirmDelete()

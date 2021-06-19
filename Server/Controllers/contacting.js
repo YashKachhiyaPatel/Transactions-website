@@ -3,21 +3,16 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ProcessContactDeletePage = exports.ProcessContactAddPage = exports.ProcessContactEditPage = exports.DisplayContactAddPage = exports.DisplayContactingEditPage = exports.DisplayContactingListPage = void 0;
+exports.ProcessContactDeletePage = exports.ProcessContactEditPage = exports.DisplayContactAddPage = exports.DisplayContactingEditPage = exports.DisplayContactingListPage = void 0;
 const contacting_1 = __importDefault(require("../Models/contacting"));
 const Util_1 = require("../Util");
 function DisplayContactingListPage(req, res, next) {
-    if (!req.user) {
-        res.redirect('/login');
-    }
-    else {
-        contacting_1.default.find({}, null, { sort: { name: 1 } }, function (err, contactingCollection) {
-            if (err) {
-                return console.error(err);
-            }
-            res.render('index', { title: 'Business Contacts', page: 'contacting-list', contacting: contactingCollection, displayName: Util_1.UserDisplayName(req) });
-        });
-    }
+    contacting_1.default.find({}, null, { sort: { name: 1 } }, function (err, contactingCollection) {
+        if (err) {
+            return console.error(err);
+        }
+        res.render('index', { title: 'Business Contacts', page: 'contacting-list', contacting: contactingCollection, displayName: Util_1.UserDisplayName(req) });
+    });
 }
 exports.DisplayContactingListPage = DisplayContactingListPage;
 function DisplayContactingEditPage(req, res, next) {
@@ -52,21 +47,6 @@ function ProcessContactEditPage(req, res, next) {
     });
 }
 exports.ProcessContactEditPage = ProcessContactEditPage;
-function ProcessContactAddPage(req, res, next) {
-    let newContact = new contacting_1.default({
-        "name": req.body.name,
-        "number": req.body.number,
-        "emailAddress": req.body.emailAddress
-    });
-    contacting_1.default.create(newContact, (err) => {
-        if (err) {
-            console.error(err);
-            res.end(err);
-        }
-        res.redirect('/contacting-list');
-    });
-}
-exports.ProcessContactAddPage = ProcessContactAddPage;
 function ProcessContactDeletePage(req, res, next) {
     let id = req.params.id;
     contacting_1.default.remove({ _id: id }, (err) => {

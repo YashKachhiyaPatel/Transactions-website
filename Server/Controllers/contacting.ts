@@ -5,19 +5,13 @@ import { UserDisplayName } from '../Util';
 
 export function DisplayContactingListPage(req: Request, res:Response,next:NextFunction): void
 {
-  if(!req.user){
-    res.redirect('/login');
-  }
-  else{
     Contacting.find({}, null, {sort: {name: 1}},function(err,contactingCollection){
         if(err){
             return console.error(err);
         }
-
         //printing list
         res.render('index',{title: 'Business Contacts', page: 'contacting-list', contacting: contactingCollection, displayName: UserDisplayName(req) })
-    });
-  }
+    }); 
 }
 
 // Display (E)dit page
@@ -76,29 +70,6 @@ export function ProcessContactEditPage(req: Request, res: Response, next: NextFu
   
       res.redirect('/contacting-list');
     });
-}
-
-// Process (C)reate page
-export function ProcessContactAddPage(req: Request, res: Response, next: NextFunction): void
-{
-  // instantiate a new Clothing
-  let newContact = new Contacting
-  ({
-    "name": req.body.name,
-      "number": req.body.number,
-      "emailAddress": req.body.emailAddress
-  });
-
-  // db.clothing.insert({clothing data is here...})
-  Contacting.create(newContact, (err) => {
-    if(err)
-    {
-      console.error(err);
-      res.end(err);
-    }
-
-    res.redirect('/contacting-list');
-  });
 }
 
 // Process (D)elete page

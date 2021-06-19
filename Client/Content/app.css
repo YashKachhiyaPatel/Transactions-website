@@ -1,8 +1,12 @@
 /* your custom css goes here */
+/* Yash Kachhiyapatel (301171192) - 18-June-2021 */
+
 
 body{
     background: #333;
   }
+
+  /* about me button css on main page*/
 .mainBtn{
   height: 40px;
 	width: 150px;
@@ -74,8 +78,9 @@ body{
   .card:hover > .back{
     transform: perspective(600px) rotateY(0deg);
   }
-  /* contact page */
-  
+
+
+  /* contact page css*/ 
 /* background image  */
 #fancy-form{
   line-height: 1.5;
@@ -235,8 +240,7 @@ body{
               }
            }
 
-  /* services section */
-  
+  /* services section  css*/
 .section-services {
 	font-family: "Poppins", sans-serif;
 	color: #202020;
@@ -403,7 +407,8 @@ body{
   color:white; 
 }
 
-/* A2 */
+
+/* Assignment-2 CSS */
 .input-group-addon:first-child
 {
     border-right: 0;

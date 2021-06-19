@@ -3,7 +3,7 @@
 <div class="row">
     <div class="col">
      <!--table-->  
-      
+
      <table class="table backColor">
         <thead>
           <tr>
@@ -11,8 +11,10 @@
             <th scope="col">Contact Name</th>
             <th scope="col">Contact Number</th>
             <th scope="col">Email Address</th>
+             <% if(displayName) { %>
             <th></th>
             <th></th>
+            <% } %>
           </tr>
         </thead>
         <tbody>
