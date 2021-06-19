@@ -1,3 +1,3 @@
-# COMP229-M2021-Week6b
+# Assignment:2 (Web Application Development - COMP229)
 
-Demo Project for COMP229 - Week 6
+ Yash Kachhiyapatel (301171192) - 18-June-2021
