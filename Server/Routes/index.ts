@@ -1,5 +1,5 @@
 import express from 'express';
-import { DisplayHomePage, DisplayAboutPage, DisplayProjectsPage, DisplayServicesPage, DisplayContactPage, DisplayLoginPage, ProcessLoginPage, ProcessLogoutPage} from '../Controllers';
+import { DisplayHomePage, DisplayAboutPage, DisplayProjectsPage, DisplayServicesPage, DisplayContactPage, DisplayLoginPage, ProcessLoginPage, ProcessLogoutPage, ProcessRegisterPage, DisplayRegisterPage} from '../Controllers';
 const router = express.Router();
 export default router;
 
@@ -32,5 +32,10 @@ router.post('/login', ProcessLoginPage);
 /* GET - process the Logout page - /logout */
 router.get('/logout', ProcessLogoutPage);
 
+/* POST - process Register page when user presses Register button */
+router.post('/register', ProcessRegisterPage);
+
+/* GET - display Register page - /register */
+router.get('/register', DisplayRegisterPage);
 
 //module.exports = router;

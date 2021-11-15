@@ -1,11 +1,11 @@
 {
-  "name": "A2",
-  "version": "2.0.0",
-  "private": true,
-  "description": "Authentication Assignment",
+  "name": "transactionapp",
+  "version": "1.0.0",
+  "private": false,
+  "description": "Software Development Project",
   "main": "index.js",
-  "repository": "https://github.com/YashKachhiyaPatel/A2-COMP229.git",
-  "author": "Yash",
+  "repository": "git+https://github.com/F21-G3-S4/TransactionApp.git",
+  "author": "F21-G3-S4",
   "license": "MIT",
   "scripts": {
     "start": "node index.js"
@@ -46,5 +46,14 @@
     "@types/passport": "^1.0.6",
     "@types/passport-local": "^1.0.33",
     "@types/passport-local-mongoose": "^4.0.14"
-  }
+  },
+  "bugs": {
+    "url": "https://github.com/F21-G3-S4/TransactionApp/issues"
+  },
+  "homepage": "https://github.com/F21-G3-S4/TransactionApp#readme",
+  "keywords": [
+    "Record",
+    "all",
+    "transactions"
+  ]
 }

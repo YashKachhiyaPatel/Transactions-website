@@ -1,7 +1,6 @@
-<!-- Yash Kachhiyapatel (301171192) - 18-June-2021 -->
-<!-- navigation (header portion) -->
 
-<nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
+
+<nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
       <a class="navbar-brand" href="/home">
       <img src="/Assets/images/logo.jpg" alt="YASH" width="105" height="27" />
@@ -29,23 +28,9 @@
          
           </li>
 
-           <li class="nav-item">      
-         <% if (page === 'projects'){ %>
-               <a class="nav-link active" href="/projects"><i class="fas fa-cog fa-lg"></i> Projects</a>
-          <% } else { %>
-           <a class="nav-link" href="/projects"><i class="fas fa-cog fa-lg"></i> Projects</a>
-          <% } %>
          
-          </li>
 
-           <li class="nav-item">      
-         <% if (page === 'services'){ %>
-             <a class="nav-link active" href="/services"><i class="fas fa-map fa-lg"></i> Services</a>
-          <% } else { %>
-           <a class="nav-link" href="/services"><i class="fas fa-map fa-lg"></i> Services</a>
-          <% } %>
-         
-          </li>
+        
 
 
           <li class="nav-item">      
@@ -56,13 +41,7 @@
           <% } %>         
           </li>
 
-          <li class="nav-item">      
-         <% if (page === 'contacting-list'){ %>
-             <a class="nav-link active" href="/contacting-list"><i class="fas fa-address-book fa-lg"></i> Business Contacts</a>
-          <% } else { %>
-            <a class="nav-link" href="/contacting-list"><i class="fas fa-address-book fa-lg"></i> Business Contacts</a>
-          <% } %>         
-          </li>
+        
           
            <% if(displayName) { %>
             <li class="nav-item">

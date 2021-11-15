@@ -1,0 +1,78 @@
+<div class="row">
+    <div class="offset-md-3 col-md-6 col-sm-12">
+          <div class="login" id="contentArea">
+              <h2>Register</h2>
+
+              <% if(messages.length > 0) { %>
+                <div id="messageArea" class="alert alert-danger">
+                  <%= messages %>
+                </div>
+              <% } %>
+
+              <form method="POST" id="registerForm" novalidate>
+                <p class="hint-text">Create your own account. It's free and only takes a minute.</p>
+                <p class="lead"><i class="fas fa-user-shield"></i> Personal Information</p>
+
+                <div class="row">
+                  <div class="col-md-6">
+                    <input class="form-control" type="text" name="FirstName" id="firstName" placeholder="First Name" required>
+                  </div>
+                  <div class="col-md-6">
+                    <input class="form-control" type="text" name="LastName" id="lastName" placeholder="Last Name" required>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-12">
+                    <input type="email" class="form-control" id="emailAddress" name="EmailAddress" required
+                    value="" placeholder="Email Address">
+                  </div>
+                </div>
+
+                <div class="row text-center">
+                  <div class="col-lg-4 col-4">Type of User ?</div>
+                  <div class="col-lg-1 col-1">Customer</div>
+                  <div class="col-lg-2 col-2"><input type="radio" name="user" id="customer"></div>
+                  <div class="col-lg-1 col-1">Business Owner</div>
+                  <div class="col-lg-2 col-2"><input type="radio" name="user" id="owner"></div>
+                </div>
+               
+
+                <p class="lead"><i class="fas fa-database"></i>System Identification</p>
+
+                <div class="row">              
+                  <div class="col-md-12">
+                    <input type="text" class="form-control" id="username" name="username"  required
+                    value="" placeholder="Username">
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-lg-6 col-md-6">
+                    <input type="password" class="form-control" id="password" name="password"  required
+                    value="" placeholder="Password">
+                  </div>
+
+                   <div class="col-lg-6 col-md-6">
+                    <input type="password" class="form-control" id="confirmPassword" name="confirmPassword"  required
+                    value="" placeholder="Confirm Password">
+                  </div>
+                </div>        
+                 
+                                                    
+                <div class="text-end">
+                  <button id="submitButton" type="submit" class="btn btn-primary">Register</button>
+                  <button id="cancelButton" type="reset" class="btn btn-warning"><i class="fas fa-undo fa-lg"></i> Cancel</button>
+                </div>
+
+                
+               <p class="text-center text-white small">
+                Already have an account? 
+                <a href="/login">Sign in</a>
+              </p>
+              </form>
+             
+          </div>
+        
+    </div>
+</div>

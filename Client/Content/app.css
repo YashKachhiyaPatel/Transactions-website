@@ -1,397 +1,85 @@
 /* your custom css goes here */
-/* Yash Kachhiyapatel (301171192) - 18-June-2021 */
 
 
-body{
-    background: #333;
-  }
+body {
+  background: #6DA6E0;
+  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #EEF15C, #6DA6E0);
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #EEF15C, #6DA6E0);
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
-  /* about me button css on main page*/
-.mainBtn{
-  height: 40px;
-	width: 150px;
-	font-size: 1.5rem;
-	background-color: gray;
-	border: none;
-	border-radius: 15px;
-	box-shadow: 0px 0px 2px 2px rgb(66, 66, 66);
-}
-.mainBtn:hover{
-  background-color:#383131;
-  color:white; 
-}
-  .middle{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-  }
-  .card{
-    cursor: pointer;
-    width: 340px;
-    height: 480px;
-  }
-  .front,.back{
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    backface-visibility: hidden;
-    position: absolute;
-    transition: transform .6s linear;
-  }
-  .front img{
-    height: 100%;
-  }
-  .front{
-    transform: perspective(600px) rotateY(0deg);
-  }
-  .back{
-    background: #f1f1f1;
-    transform: perspective(600px) rotateY(180deg);
-  }
-  .back-content{
-    color: #2c3e50;
-    text-align: center;
-    width: 100%;
-  }
-  .sm{
-    margin: 20px 0;
-  }
-  .sm a{
-    display: inline-flex;
-    width: 40px;
-    height: 40px;
-    justify-content: center;
-    align-items: center;
-    color: #2c3e50;
-    font-size: 18px;
-    transition: 0.4s;
-    border-radius: 50%
-  }
-  .sm a:hover{
-    background: #2c3e50;
-    color: white;
-  }
-  .card:hover > .front{
-    transform: perspective(600px) rotateY(-180deg);
-  }
-  .card:hover > .back{
-    transform: perspective(600px) rotateY(0deg);
-  }
-
-
-  /* contact page css*/ 
-/* background image  */
-#fancy-form{
-  line-height: 1.5;
- box-sizing: border-box;
- color:rgba(248, 248, 248, 0.938);
-
-  background: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.6)),url(../imgs/particles.jpg);
-  background-size: cover;
-  background-position: center;
- }
- 
- /* container utility */
- #fancy-form .container{
-   width: 75%;
-   margin: auto;
-   overflow: hidden;
- }
- 
- /* main div */
- .form-sections{
-   margin-top: 1rem;
-   display: grid;
-   grid-gap: 5rem;
-   grid-template-columns: repeat(2, 1fr);
- }
- 
- /* Form-left styling */
- .Form-left h1{
-   color: #fff;
-   padding: 0;
-   margin: 0;
- }
- 
- .Form-left h4{
-   padding: 0;
-   margin: 0;
-   color: rgb(243, 235, 235);
- }
- 
- .Form-left span{
-   color: rgb(187, 182, 182);
-   font-weight: bold;
- }
- 
- .Form-left hr{
-   width: 25rem;
-   margin-left: 0;
-   border: 1px solid rgb(53, 52, 52);
- }
- 
- /* socail media icons */
- .contact-icon{
-   margin-top: -10px;
-   margin-bottom: 80px;
- }
- .fab {
-   padding: 8px;
-   font-size: 18px;
-   width: 50px;
-   text-align: center;
-   text-decoration: none;
-   /* margin: 5px 2px; */
-   color: rgb(187, 182, 182);
- }
- .fab:hover{
-   color: rgb(16, 135, 190);;
- }
- 
- 
- /* Form Right Styling */
- .Form-right h1{
-   color: #fff;
-   padding: 0;
-   margin: 0;
- }
- 
- form{
-   padding-top: 0.7rem;
- }
- 
- form h5{
-   padding: 0;
-   margin: 0;
-   color: rgb(228, 218, 218);
- }
- form input{
-   padding:0.6rem;
-   width: 27rem;
-   border: none;
-   background-color:rgba(136, 133, 133, 0.3);
-   color:white;
-   border: none;
-   outline:none;
- }
- 
- form textarea{
-   padding:0.6rem;
-   width: 27rem;
-   border: none;
-   background-color:rgba(136, 133, 133, 0.3);
-   color:white;
-   border: none;
-   outline:none;
-  }
- 
-  form button{
-     width: 10rem;
-     background: rgb(12, 168, 207);
-     padding: 5px;
-     outline: none;
-     border-color: transparent;
-     color: #fff;
-     font-size: 22px;
-     font-weight: bold;
-     letter-spacing: 2px;
-     text-align: center;
-     margin-top: 0.9rem;
-     border-radius: 40px;
-     cursor: pointer;
-  }
-  form button:hover{
-    background: rgb(5, 84, 104);
- }
- 
- 
-  /* media queries */
-    @media (max-width: 968px){
-  
-      #fancy-form .form-sections{
-        display: block;
-        width: 100%;
-        text-align: left;
-           }
- 
-       /* background image  */
-       #fancy-form{
-         background: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.9)),url(../imgs/particles.jpg);
-         background-size: cover;
-         background-position: center;
-         height: auto;
-         width: 100%;
-          }
- 
-       .form-sections .Form-right{
-         margin-top: 2rem;
-         margin-bottom: 2rem;
-          }
- 
-     /* socail media icons */
-         .fa{
-          padding: 8px;
-          font-size: 18px;
-          width: 30px;
-          text-align: center;
-          text-decoration: none;
-          color: rgb(187, 182, 182);
-              }
-           }
-
-  /* services section  css*/
-.section-services {
-	font-family: "Poppins", sans-serif;
-	color: #202020;
 }
 
-.section-services .header-section {
-	margin-bottom: 34px;
+
+/* DEMO-SPECIFIC STYLES */
+.typewriter h1 {
+
+color: black;
+font-family: monospace;
+overflow: hidden; /* Ensures the content is not revealed until the animation */
+border-right: .15em solid orange; /* The typwriter cursor */
+white-space: nowrap; /* Keeps the content on a single line */
+margin: 0 auto; /* Gives that scrolling effect as the typing happens */
+letter-spacing: .15em; /* Adjust as needed */
+animation: 
+  typing 3.5s steps(30, end),
+  blink-caret .5s step-end infinite;
 }
 
-.section-services .header-section .title {
-	position: relative;
-    padding-bottom: 14px;
-    margin-bottom: 25px;
-	font-weight: 700;
-    font-size: 32px;
+/* The typing effect */
+@keyframes typing {
+from { width: 0 }
+to { width: 100% }
 }
 
-.section-services .header-section .title:before {
-	content: "";
-	position: absolute;
-	bottom: 0;
-	left: 50%;
-	transform: translateX(-50%);
-	width: 50px;
-	height: 3px;
-	background-color: #00d9ff;
-    border-radius: 3px;
+/* The typewriter cursor effect */
+@keyframes blink-caret {
+from, to { border-color: transparent }
+50% { border-color: orange }
 }
 
-.section-services .header-section .title:after {
-	content: "";
-	position: absolute;
-	bottom: 0;
-	left: 50%;
-    transform: translateX(30px);
-	width: 10px;
-	height: 3px;
-	background-color: #4f937e;
-    border-radius: 3px;
+.nav-item {
+  list-style: none;
 }
 
-.section-services .header-section .description {
-	font-size: 14px;
-    color: #282828;
+.nav-item a {
+  border-radius: 25px;
+  padding: 10px;
+  margin-left: 5px;
+  text-decoration: none;
 }
 
-.section-services .single-service {
-    position: relative;
-    margin-top: 30px;
-    background-color: #fff;
-    border-radius: 10px;
-    padding: 40px 30px;
-    overflow: hidden;
+.nav-item a:hover {
+  border-radius: 25px;
+  background-color: #66c1a3;
+  color: white !important;
 }
 
-.section-services .single-service .content {
-	position: relative;
-	z-index: 20;
+.nav-item.active {
+  background-color: #1B3E70;
+  color: white;
+}
+.delete-row{
+  font-size: 25px;
+  margin-left: -20px;
 }
 
-.section-services .single-service .circle-before {
-    position: absolute;
-    top: 0;
-    right: 0px;
-    transform: translate(40%, -40%);
-    width: 150px;
-    height: 150px;
-    background-color: #cc3f3f;
-    border: 6px solid #504f93;
-    border-radius: 50%;
-    opacity: 0.5;
-    z-index: 10;
-    transition: all .6s;
+.add-cust{
+  width: 260px;
+  font-size: 23px;
+  border: 3px solid green;
+  font-weight: bold;
+  transition: transform .4s;
+}
+.add-cust:hover{
+  transform: scale(1.1);
+}
+.submit-cust{
+  font-size: 20px;
+  width: 150px;
 }
 
-.section-services .single-service:hover .circle-before {
-	width: 100%;
-	height: 100%;
-	transform: none;
-	border: 0;
-	border-radius: 0;
-	opacity: 1;
-}
-
-.section-services .single-service .icon {
-	display: inline-block;
-	margin-bottom: 26px;
-    width: 70px;
-    height: 70px;
-    background-color: #cc3f3f;
-    border-radius: 5px;
-    line-height: 70px;
-    text-align: center;
-    color: #fff;
-    font-size: 30px;
-    transition: all .3s;
-}
-
-.section-services .single-service:hover .icon {
-	background-color: #fff;
-	color: #cc3f3f;
-}
-
-.section-services .single-service .title {
-    margin-bottom: 18px;
-	font-weight: 700;
-    font-size: 23px;
-    transition: color .3s;
-}
-
-.section-services .single-service:hover .title {
-	color: #fff;
-}
-
-.section-services .single-service .description {
-    margin-bottom: 20px;
-    font-size: 16px;
-    transition: color .3s;
-}
-
-.section-services .single-service:hover .description {
-	color: #fff;
-}
-
-.section-services .single-service a {
-	position: relative;
-	font-size: 18px;
-    color: #202020;
-    text-decoration: none;
-    font-weight: 500;
-    transition: color .3s;
-}
-
-.section-services .single-service:hover a {
-	color: #fff;
-}
-
-.section-services .single-service a:after {
-	content: "";
-	position: absolute;
-	bottom: 0;
-	left: 0;
-	right: 0;
-	height: 1px;
-	background-color: #cc3f3f;
-	transition: background-color .3s;
-}
-
-.section-services .single-service:hover a:after {
-	background-color: #fff;
-}
 .myResume{
   height: 40px;
 	width: 150px;
@@ -476,7 +164,7 @@ body{
   color: white;
 }
 .backColor{
-  background-color:#333;
+  background-color:rgb(122, 116, 116);
   color: white;
   text-align: center;
 }
