@@ -48,7 +48,7 @@ function ProcessCustomerEditPage(req, res, next) {
         "custnumber": req.body.custnumber,
         "custemail": req.body.custemail,
         "custamount": req.body.custamount,
-        "busiessname": req.body.businessname
+        "businessname": req.body.businessname
     });
     addcustomer_1.default.updateOne({ _id: id }, updatedaddcustomerItem, {}, (err) => {
         if (err) {
@@ -83,7 +83,7 @@ function ProcessCustomerAddPage(req, res, next) {
         "custnumber": req.body.custnumber,
         "custemail": req.body.custemail,
         "custamount": req.body.custamount,
-        "busiessname": req.body.businessname
+        "businessname": req.body.businessname
     });
     addcustomer_1.default.create(newCustomer, (err) => {
         if (err) {

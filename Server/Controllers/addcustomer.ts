@@ -51,7 +51,7 @@ export function ProcessCustomerEditPage(req: Request, res: Response, next: NextF
       "custnumber": req.body.custnumber,
       "custemail": req.body.custemail,
       "custamount": req.body.custamount,
-      "busiessname": req.body.businessname
+      "businessname": req.body.businessname
     });
   
     // find the clothing item via db.clothing.update({"_id":id}) and then update
@@ -94,7 +94,7 @@ export function ProcessCustomerAddPage(req: Request, res: Response, next: NextFu
       "custnumber": req.body.custnumber,
       "custemail": req.body.custemail,
       "custamount": req.body.custamount,
-      "busiessname": req.body.businessname
+      "businessname": req.body.businessname
   });
 
   // db.clothing.insert({clothing data is here...})
