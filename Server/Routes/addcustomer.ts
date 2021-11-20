@@ -13,22 +13,22 @@ import { AuthGuard, AuthOwner } from '../Util/index';
 router.get('/', ProcessAddCustomer);
 
 /* GET - display /clothing-list/add page. */
-router.get('/addcustomer/add', AuthGuard,AuthOwner, DisplayCustomerAddPage);
+router.get('/addcustomer/add', AuthGuard, DisplayCustomerAddPage);
 
 /* GET - display /clothing-list/edit/:id page. */
-router.get('/addcustomer/edit/:id', AuthGuard,AuthOwner, DisplayaddcustomerEditPage);
+router.get('/addcustomer/edit/:id', AuthGuard, DisplayaddcustomerEditPage);
 
 /* POST - process /clothing-list/add page */
-router.post('/addcustomer/add', AuthGuard,AuthOwner, ProcessCustomerAddPage);
+router.post('/addcustomer/add', AuthGuard, ProcessCustomerAddPage);
 
 /* POST - process /clothing-list/edit/:id page */
-router.post('/addcustomer/edit/:id', AuthGuard,AuthOwner, ProcessCustomerEditPage);
+router.post('/addcustomer/edit/:id', AuthGuard, ProcessCustomerEditPage);
 
 /* GET - process /clothing-list/delete/:id */
-router.get('/addcustomer/delete/:id', AuthGuard,AuthOwner, ProcessCustomerDeletePage);
+router.get('/addcustomer/delete/:id', AuthGuard, ProcessCustomerDeletePage);
 
 //dashboard to list page
-router.get('/addcustomer', AuthGuard,AuthOwner, DisplayaddcustomerListPage);
+router.get('/addcustomer', AuthGuard, DisplayaddcustomerListPage);
 
 
 
