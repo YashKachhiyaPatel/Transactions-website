@@ -23,6 +23,7 @@ import flash from 'connect-flash';
 // attach router files
 import indexRouter from '../Routes/index';
 import contactingRounter from '../Routes/contacting';
+import addcustomerRouter from '../Routes/addcustomer';
 
 // Express Web App Configuration
 const app = express();
@@ -30,7 +31,7 @@ export default app; // exports app as the default Object for this module
 
 // DB Configuration
 import * as DBConfig from './db';
-mongoose.connect(DBConfig.RemoteURI, {useNewUrlParser: true, useUnifiedTopology: true});
+mongoose.connect(DBConfig.LocalURI, {useNewUrlParser: true, useUnifiedTopology: true});
 
 const db = mongoose.connection; // alias for the mongoose connection
 db.on("error", function()
@@ -81,6 +82,7 @@ passport.deserializeUser(User.deserializeUser());
 // create routing through event handling
 app.use('/', indexRouter);
 app.use('/contacting-list',contactingRounter);
+app.use('/owner',addcustomerRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) 

@@ -20,3 +20,18 @@ export function AuthGuard(req: Request, res: Response, next: NextFunction): void
     }
     next();
 }
+
+export function AuthOwner(req: Request, res: Response, next: NextFunction): void
+{
+    let newuser = req.user as UserDocument; 
+
+    if((newuser.isowner).toString() === "customer")
+    {
+        return res.redirect('/home');
+    }
+    else{
+        return res.redirect('/owner');
+    }
+    next();
+}
+

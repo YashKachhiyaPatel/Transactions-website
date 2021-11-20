@@ -1,0 +1,22 @@
+{
+    "addcustomer":[
+    {
+        "custname": "Yash",
+        "custnumber": "9922334455",
+        "custemail": "lifeline242734@gmail.com",
+        "custamount": "500"
+   
+    },
+    {
+        "custname": "Dev",
+        "custnumber": "9900334455",
+        "custemail": "lifeline242734@gmail.com",
+        "custamount": "600"
+    },
+    {
+        "custname": "Nainil",
+        "custnumber": "9920074455",
+        "custemail": "lifeline242734@gmail.com",
+        "custamount": "400"
+    }]
+}

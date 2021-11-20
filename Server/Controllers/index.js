@@ -31,7 +31,7 @@ function DisplayLoginPage(req, res, next) {
     if (!req.user) {
         return res.render('index', { title: 'Login', page: 'login', messages: req.flash('loginMessage'), displayName: Util_1.UserDisplayName(req) });
     }
-    return res.redirect('/contacting-list');
+    return res.redirect('/owner');
 }
 exports.DisplayLoginPage = DisplayLoginPage;
 function ProcessLoginPage(req, res, next) {
@@ -49,7 +49,7 @@ function ProcessLoginPage(req, res, next) {
                 console.error(err);
                 return next(err);
             }
-            return res.redirect('/contacting-list');
+            return res.redirect('/owner');
         });
     })(req, res, next);
 }
@@ -58,14 +58,15 @@ function DisplayRegisterPage(req, res, next) {
     if (!req.user) {
         return res.render('index', { title: 'Register', page: 'register', messages: req.flash('registerMessage'), displayName: Util_1.UserDisplayName(req) });
     }
-    return res.redirect('/contacting-list');
+    return res.redirect('/owner');
 }
 exports.DisplayRegisterPage = DisplayRegisterPage;
 function ProcessRegisterPage(req, res, next) {
     let newUser = new user_1.default({
         username: req.body.username,
         emailAddress: req.body.emailAddress,
-        displayName: req.body.FirstName + " " + req.body.LastName
+        displayName: req.body.FirstName + " " + req.body.LastName,
+        isowner: req.body.isowner
     });
     user_1.default.register(newUser, req.body.password, (err) => {
         if (err) {
@@ -77,7 +78,7 @@ function ProcessRegisterPage(req, res, next) {
             return res.redirect('/register');
         }
         return passport_1.default.authenticate('local')(req, res, () => {
-            return res.redirect('/contacting-list');
+            return res.redirect('/owner');
         });
     });
 }

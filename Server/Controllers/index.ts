@@ -43,7 +43,7 @@ export function DisplayLoginPage(req: Request, res: Response, next: NextFunction
         return res.render('index', { title: 'Login', page: 'login', messages: req.flash('loginMessage'), displayName: UserDisplayName(req) });
     }
     
-    return res.redirect('/contacting-list');
+    return res.redirect('/owner');
 }
 
 export function ProcessLoginPage(req: Request, res: Response, next: NextFunction): void
@@ -73,7 +73,7 @@ export function ProcessLoginPage(req: Request, res: Response, next: NextFunction
             return next(err);
         }
 
-        return res.redirect('/contacting-list');
+        return res.redirect('/owner');
     });
    })(req, res, next);
 }
@@ -85,7 +85,7 @@ export function DisplayRegisterPage(req: Request, res: Response, next: NextFunct
         return res.render('index', { title: 'Register', page: 'register', messages: req.flash('registerMessage'), displayName: UserDisplayName(req)   });
     }
 
-    return res.redirect('/contacting-list');
+    return res.redirect('/owner');
 }
 
 export function ProcessRegisterPage(req: Request, res: Response, next: NextFunction): void
@@ -95,7 +95,8 @@ export function ProcessRegisterPage(req: Request, res: Response, next: NextFunct
    ({
         username: req.body.username,
         emailAddress: req.body.emailAddress,
-        displayName: req.body.FirstName + " " + req.body.LastName
+        displayName: req.body.FirstName + " " + req.body.LastName,
+        isowner: req.body.isowner
    });
 
    User.register(newUser, req.body.password, (err) =>
@@ -115,7 +116,7 @@ export function ProcessRegisterPage(req: Request, res: Response, next: NextFunct
         // after successful registration - login the user
         return passport.authenticate('local')(req, res, () => 
         {
-            return res.redirect('/contacting-list');
+            return res.redirect('/owner');
         });
    });
 }

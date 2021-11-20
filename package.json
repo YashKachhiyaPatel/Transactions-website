@@ -1,10 +1,13 @@
 {
-  "name": "transactionapp",
+  "name": "transactions",
   "version": "1.0.0",
   "private": false,
   "description": "Software Development Project",
   "main": "index.js",
-  "repository": "git+https://github.com/F21-G3-S4/TransactionApp.git",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/F21-G3-S4/TransactionApp.git"
+  },
   "author": "F21-G3-S4",
   "license": "MIT",
   "scripts": {

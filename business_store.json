@@ -1,0 +1,16 @@
+{
+    "business":[
+    {
+        "bname": "Yash",
+        "baddress": "9922334455",
+        "bdescription": "best app"
+   
+    },
+    {
+        "bname": "Yash2",
+        "baddress": "22334455",
+        "bdescription": "best app2"
+   
+    }
+   ]
+}
