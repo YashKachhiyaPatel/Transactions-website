@@ -1,0 +1,44 @@
+
+  <%- include('../components/header.ejs'); %>
+
+<div class="container mt-1 backColor">
+<div class="row justify-content-lg-center g-3">
+    <h1><%= title %> Business Info</h1>
+
+    <form method="POST" class="col-lg-6 col-md-10 col-sm-10 backcolor">
+        <div class="input-group mb-3">
+            <span class="input-group-text " id="inputGroup-name">Name</span>
+            <input type="text" class="form-control" placeholder="Enter Name" aria-label="Name" aria-describedby="Business Name"
+            name="bname" value="<%= addbusiness.bname %>" required>
+        </div>
+
+        <div class="input-group mb-3">
+            <span class="input-group-text " id="inputGroup-name">Address</span>
+            <input type="text" class="form-control" placeholder="Enter Name" aria-label="Address" aria-describedby="Business Address"
+            name="baddress" value="<%= addbusiness.baddress %>" required>
+        </div>
+
+        <div class="input-group mb-3">
+            <span class="input-group-text " id="inputGroup-name">Description</span>
+            <input type="text" class="form-control" placeholder="Enter Description" aria-label="Name" aria-describedby="Business Description"
+            name="bdescription" value="<%= addbusiness.bdescription %>" required>
+        </div>
+         
+        <div class="mb-3">
+
+         <% if(title == "Edit") { %>
+                <button type="submit" id="editButton" class="btn btn-primary"><i class="fas fa-edit fa-lg"></i> Edit</button>
+            <% } else { %>
+                <button type="submit" id="addButton" class="btn btn-primary"><i class="fas fa-plus-circle fa-lg"></i> Add</button>
+            <% } %>  
+
+
+             <button type="button" class="btn btn-outline-warning"><a href="/owner" id="cancelButton" class="update-button"><i class="fas fa-undo"></i> Cancel</a></button>
+        </div>
+        
+        </div>
+    </form>
+</div>
+</div>
+
+<%- include('../components/footer.ejs'); %>

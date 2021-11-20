@@ -1,44 +1,55 @@
-
-  <%- include('../components/header.ejs'); %>
-
-<div class="container mt-1 backColor">
-<div class="row justify-content-lg-center g-3">
-    <h1><%= title %> Business Info</h1>
-
-    <form method="POST" class="col-lg-6 col-md-10 col-sm-10 backcolor">
-        <div class="input-group mb-3">
-            <span class="input-group-text " id="inputGroup-name">Name</span>
-            <input type="text" class="form-control" placeholder="Enter Name" aria-label="Name" aria-describedby="Business Name"
-            name="bname" value="<%= business.bname %>" required>
-        </div>
-
-        <div class="input-group mb-3">
-            <span class="input-group-text " id="inputGroup-name">Address</span>
-            <input type="text" class="form-control" placeholder="Enter Name" aria-label="Address" aria-describedby="Business Address"
-            name="baddress" value="<%= business.baddress %>" required>
-        </div>
-
-        <div class="input-group mb-3">
-            <span class="input-group-text " id="inputGroup-name">Description</span>
-            <input type="text" class="form-control" placeholder="Enter Description" aria-label="Name" aria-describedby="Business Description"
-            name="bdescription" value="<%= business.bdescription %>" required>
-        </div>
-         
-        <div class="mb-3">
-
-         <% if(title == "Edit") { %>
-                <button type="submit" id="editButton" class="btn btn-primary"><i class="fas fa-edit fa-lg"></i> Edit</button>
-            <% } else { %>
-                <button type="submit" id="addButton" class="btn btn-primary"><i class="fas fa-plus-circle fa-lg"></i> Add</button>
-            <% } %>  
+<%- include('../components/header.ejs'); %>
+<div class="container">
 
 
-             <button type="button" class="btn btn-outline-warning"><a href="/owner" id="cancelButton" class="update-button"><i class="fas fa-undo"></i> Cancel</a></button>
-        </div>
+<h1><%= title %></h1>
+
+<div class="row">
+   
+    <div class="col">
+
+        <% if(displayName) { %>
         
-        </div>
-    </form>
+        <a href="/owner/addbusiness/add" id="addButton" class="btn btn-primary mb-1"><i class="fas fa-plus-circle"></i> Add Business</a>
+        <% } %>
+
+        <table class="table table-striped table-bordered table-hover">
+            <thead class="table-dark">
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">Address</th>
+                <th scope="col">Description</th>
+                 <% if(displayName) { %>
+                  <th></th>
+                  <th></th>
+                <% } %>
+              </tr>
+            </thead>
+            <tbody>
+
+             <!-- Repeatable Row Template -->   
+
+             <% for(let count = 0; count < addbusiness.length; count++) { %>
+              
+                <tr>
+                    <th scope="row"><%= count + 1 %></th>
+                    <td><%= addbusiness[count].bname %></td>
+                    <td><%= addbusiness[count].baddress %></td>
+                    <td><%= addbusiness[count].bdescription %></td>
+                     <% if(displayName) { %>
+                      <td class="text-center"><a href="/owner/addbusiness/edit/<%= addbusiness[count]._id %>" class="btn btn-primary btn-sm edit"><i class="fas fa-edit fa-sm"></i> Edit</a></td>
+                      <td class="text-center"><a href="/owner/addbusiness/delete/<%= addbusiness[count]._id %>" class="btn btn-danger btn-sm deletebusiness"><i class="fas fa-trash-alt fa-sm"></i> Delete</a></td>
+                    <% } %>
+                </tr>
+
+              <% } %>
+
+            </tbody>
+          </table>
+    </div>
 </div>
+
 </div>
 
 <%- include('../components/footer.ejs'); %>

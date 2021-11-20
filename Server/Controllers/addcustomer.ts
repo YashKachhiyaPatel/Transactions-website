@@ -1,6 +1,5 @@
 import expess,{ Request, Response, NextFunction } from 'express';
 import addcustomer from '../Models/addcustomer';
-import business from '../Models/business';
 // import Util Functions
 import { UserDisplayName } from '../Util';
 
@@ -21,10 +20,6 @@ export function DisplayaddcustomerListPage(req: Request, res:Response,next:NextF
 export function DisplayaddcustomerEditPage(req: Request, res: Response, next: NextFunction): void
 {
     let id = req.params.id;
-
-    // pass the id to the db
-
-    // db.clothing.find({"_id": id})
 
     addcustomer.findById(id, {}, {}, (err, addcustomerItemToEdit) => 
     {

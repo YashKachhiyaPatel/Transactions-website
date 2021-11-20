@@ -4,7 +4,7 @@ export default router;
 
 // instantiate an object of type clothing controller
 import { ProcessAddCustomer, DisplayCustomerAddPage, DisplayaddcustomerListPage, DisplayaddcustomerEditPage, ProcessCustomerAddPage, ProcessCustomerDeletePage, ProcessCustomerEditPage } from '../Controllers/addcustomer';
-import { DisplayBusinessAddPage, DisplaybusinessListPage, ProcessBusinessAddPage } from '../Controllers/business';
+import { DisplayaddbusinessEditPage, DisplayaddBusinessListPage, DisplayBusinessAddPage, ProcessBusinessAddPage, ProcessBusinessDeletePage, ProcessBusinessEditPage } from '../Controllers/addbusiness';
 
 // import Util Functions
 import { AuthGuard, AuthOwner } from '../Util/index';
@@ -32,13 +32,25 @@ router.get('/addcustomer', AuthGuard, DisplayaddcustomerListPage);
 
 
 
+//dashboard to list page
+router.get('/addbusiness', AuthGuard, DisplayaddBusinessListPage);
 /* GET - display /clothing-list/add page. */
 router.get('/addbusiness/add', AuthGuard, DisplayBusinessAddPage);
 
 /* POST - process /clothing-list/add page */
 router.post('/addbusiness/add', AuthGuard, ProcessBusinessAddPage);
 
-router.get('/', AuthGuard, DisplaybusinessListPage);
+
+/* GET - display /clothing-list/edit/:id page. */
+router.get('/addbusiness/edit/:id', AuthGuard, DisplayaddbusinessEditPage);
+
+/* POST - process /clothing-list/edit/:id page */
+router.post('/addbusiness/edit/:id', AuthGuard, ProcessBusinessEditPage);
+
+/* GET - process /clothing-list/delete/:id */
+router.get('/addbusiness/delete/:id', AuthGuard, ProcessBusinessDeletePage);
+
+
 
 
 

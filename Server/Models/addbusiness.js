@@ -18,4 +18,4 @@ const BusinessSchema = new Schema({
 });
 const Model = mongoose_1.default.model("business", BusinessSchema);
 exports.default = Model;
-//# sourceMappingURL=business.js.map
+//# sourceMappingURL=addbusiness.js.map

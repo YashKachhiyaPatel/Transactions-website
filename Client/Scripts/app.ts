@@ -16,6 +16,14 @@
           location.href = '/owner/addcustomer';
         }              
       }); 
+
+      $("a.deletebusiness").on("click", function(event){
+        if(!confirm("Are you sure?"))
+        {
+          event.preventDefault();
+          location.href = '/owner/addbusiness';
+        }              
+      }); 
     }
 
     function Start():void
