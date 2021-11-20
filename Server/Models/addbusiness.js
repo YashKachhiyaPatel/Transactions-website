@@ -14,8 +14,8 @@ const BusinessSchema = new Schema({
         ref: 'User'
     }
 }, {
-    collection: "business"
+    collection: "addbusiness"
 });
-const Model = mongoose_1.default.model("business", BusinessSchema);
+const Model = mongoose_1.default.model("addbusiness", BusinessSchema);
 exports.default = Model;
 //# sourceMappingURL=addbusiness.js.map

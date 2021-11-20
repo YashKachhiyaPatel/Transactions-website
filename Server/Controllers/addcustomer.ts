@@ -1,5 +1,6 @@
 import expess,{ Request, Response, NextFunction } from 'express';
 import addcustomer from '../Models/addcustomer';
+import addbusiness from '../Models/addbusiness';
 // import Util Functions
 import { UserDisplayName } from '../Util';
 
@@ -17,20 +18,23 @@ export function DisplayaddcustomerListPage(req: Request, res:Response,next:NextF
 }
 
 // Display (E)dit page
-export function DisplayaddcustomerEditPage(req: Request, res: Response, next: NextFunction): void
+export async function DisplayaddcustomerEditPage(req: Request, res: Response, next: NextFunction): Promise<void>
 {
     let id = req.params.id;
+    const businessCollection = await addbusiness.find({})
 
-    addcustomer.findById(id, {}, {}, (err, addcustomerItemToEdit) => 
+    addcustomer.findById(id, {}, {}, async (err, addcustomerItemToEdit) => 
     {
+       
         if(err)
         {
             console.error(err);
             res.end(err);
         }
-
+       
+        console.log(addcustomer);
         // show the edit view
-        res.render('owner/update', { title: 'Update', page: 'update', addcustomer: addcustomerItemToEdit, displayName: UserDisplayName(req) });
+        res.render('owner/update', { title: 'Update', page: 'update', addbusiness: businessCollection, addcustomer: addcustomerItemToEdit, displayName: UserDisplayName(req) });
     });
 }
 
@@ -46,7 +50,8 @@ export function ProcessCustomerEditPage(req: Request, res: Response, next: NextF
       "custname": req.body.custname,
       "custnumber": req.body.custnumber,
       "custemail": req.body.custemail,
-      "custamount": req.body.custamount
+      "custamount": req.body.custamount,
+      "busiessname": req.body.businessname
     });
   
     // find the clothing item via db.clothing.update({"_id":id}) and then update
@@ -62,10 +67,20 @@ export function ProcessCustomerEditPage(req: Request, res: Response, next: NextF
 }
 
 // Display (C)reate page
-export function DisplayCustomerAddPage(req: Request, res: Response, next: NextFunction): void
+export async function DisplayCustomerAddPage(req: Request, res: Response, next: NextFunction): Promise<void>
 {
-    // show the edit view
-    res.render('owner/update', { title: 'Add', page: 'update', addcustomer: '', displayName: UserDisplayName(req)  });
+  try {
+    const businessCollection = await addbusiness.find({})
+    res.render('owner/update', { 
+    title: 'Add', 
+    page: 'update', 
+    addcustomer: '', 
+    addbusiness: businessCollection,
+    displayName: UserDisplayName(req)  });
+  } catch  {
+    res.redirect('owner/addcustomer');
+  }
+      
 }
 
 
@@ -78,7 +93,8 @@ export function ProcessCustomerAddPage(req: Request, res: Response, next: NextFu
     "custname": req.body.custname,
       "custnumber": req.body.custnumber,
       "custemail": req.body.custemail,
-      "custamount": req.body.custamount
+      "custamount": req.body.custamount,
+      "busiessname": req.body.businessname
   });
 
   // db.clothing.insert({clothing data is here...})
@@ -113,5 +129,5 @@ export function ProcessCustomerDeletePage(req: Request, res: Response, next: Nex
 //dashboard to customer list
 export function ProcessAddCustomer(req: Request, res: Response, next: NextFunction): void
  {
-  res.render('owner', { title: 'Contact Us', page: 'addcustomer', displayName: UserDisplayName(req)  });
+  res.render('owner', { title: 'Customer', page: 'addcustomer', displayName: UserDisplayName(req)  });
 }

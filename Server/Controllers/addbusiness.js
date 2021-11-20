@@ -16,7 +16,7 @@ function DisplayaddBusinessListPage(req, res, next) {
 }
 exports.DisplayaddBusinessListPage = DisplayaddBusinessListPage;
 function DisplayBusinessAddPage(req, res, next) {
-    res.render('owner/updatebusiness', { title: 'Add', page: 'updatebusiness', business: '', displayName: Util_1.UserDisplayName(req) });
+    res.render('owner/updatebusiness', { title: 'Add', page: 'updatebusiness', addbusiness: '', displayName: Util_1.UserDisplayName(req) });
 }
 exports.DisplayBusinessAddPage = DisplayBusinessAddPage;
 function ProcessBusinessAddPage(req, res, next) {

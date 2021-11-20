@@ -12,8 +12,8 @@ const BusinessSchema = new Schema
     }
 },
 {
-    collection: "business"
+    collection: "addbusiness"
 });
 
-const Model = mongoose.model("business", BusinessSchema);
+const Model = mongoose.model("addbusiness", BusinessSchema);
 export default Model;

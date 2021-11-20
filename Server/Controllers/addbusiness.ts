@@ -18,7 +18,7 @@ export function DisplayaddBusinessListPage(req: Request, res:Response,next:NextF
 export function DisplayBusinessAddPage(req: Request, res: Response, next: NextFunction): void
 {
     // show the edit view
-    res.render('owner/updatebusiness', { title: 'Add', page: 'updatebusiness', business: '', displayName: UserDisplayName(req)  });
+    res.render('owner/updatebusiness', { title: 'Add', page: 'updatebusiness', addbusiness: '', displayName: UserDisplayName(req)  });
 }
 
 
