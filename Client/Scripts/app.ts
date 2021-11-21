@@ -3,6 +3,31 @@
 "use strict";
 
 //function to ask while deleting
+var nodemailer = require('nodemailer');
+
+var transporter = nodemailer.createTransport({
+   service: 'gmail',
+    secure: false, 
+    auth: {
+      user: 'latestdummy@gmail.com',
+      pass: 'latest@123',
+    },
+  });
+
+  var mailOptions = {
+      from: 'latestdummy@gmail.com',
+      to: 'transactionappg3s4@gmail.com',
+      subject: 'Sending mail',
+      text: `Hi Yash, How r u!`
+  };
+
+  transporter.sendMail(mailOptions, function(error: any, info: { response: string; }){
+      if(error){
+          console.log(error);
+      } else {
+          alert('email sent'+ info.response);
+      }
+  });
 
 (function(){
 

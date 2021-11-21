@@ -9,6 +9,7 @@ import mongoose, { mongo } from 'mongoose';
 import session from 'express-session';
 import passport from 'passport';
 import passportLocal from 'passport-local';
+import bodyParser from 'body-parser';
 
 // modules for cors
 import cors from 'cors';

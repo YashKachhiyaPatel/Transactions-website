@@ -1,4 +1,27 @@
 "use strict";
+var nodemailer = require('nodemailer');
+var transporter = nodemailer.createTransport({
+    service: 'gmail',
+    secure: false,
+    auth: {
+        user: 'latestdummy@gmail.com',
+        pass: 'latest@123',
+    },
+});
+var mailOptions = {
+    from: 'latestdummy@gmail.com',
+    to: 'transactionappg3s4@gmail.com',
+    subject: 'Sending mail',
+    text: `Hi Yash, How r u!`
+};
+transporter.sendMail(mailOptions, function (error, info) {
+    if (error) {
+        console.log(error);
+    }
+    else {
+        alert('email sent' + info.response);
+    }
+});
 (function () {
     function confirmDelete() {
         $("a.delete").on("click", function (event) {
