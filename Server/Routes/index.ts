@@ -23,7 +23,7 @@ router.get('/services', DisplayServicesPage);
 /* GET contact page. */
 router.get('/contact', DisplayContactPage);
 
-/* GET contact page. */
+/* Post contact page. */
 router.post('/contact', ProcessContactPage);
 
 /* GET - display Login page - /login */

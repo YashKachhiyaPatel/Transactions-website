@@ -40,13 +40,14 @@ exports.DisplayContactPage = DisplayContactPage;
 function ProcessContactPage(req, res, next) {
     return __awaiter(this, void 0, void 0, function* () {
         const output = ` 
-      <p>You have new Request</p>
-      <h3>Details</h3>
+      <p>You have new User Request</p>
+      <h3>User Details:</h3>
       <ul>
-       <li>name: ${req.body.fname}</li>
-       <li>Email: ${req.body.email}</li>
+      <li><b>Name:</b> ${req.body.fullName}</li>
+      <li><b>Email:</b> ${req.body.email}</li>
+      <li><b>Phone Number:</b> ${req.body.phone}</li>
+      <li><b>Message:</b> ${req.body.message}</li>
        </ul>
-       <h3>Message: ${req.body.message}</h3>
     `;
         let transporter = nodemailer_1.default.createTransport({
             service: 'gmail',
@@ -57,7 +58,7 @@ function ProcessContactPage(req, res, next) {
         });
         let mailOptions = {
             from: 'transactionappg3s4@gmail.com',
-            to: 'lifeline242734@gmail.com',
+            to: 'transactionappg3s4@gmail.com',
             subject: "Node Testing...",
             text: "Hello World",
             html: output

@@ -39,13 +39,14 @@ export function DisplayContactPage(req: Request, res: Response, next: NextFuncti
 export async function ProcessContactPage(req: Request, res: Response, next: NextFunction): Promise<void>
 {
     const output = ` 
-      <p>You have new Request</p>
-      <h3>Details</h3>
+      <p>You have new User Request</p>
+      <h3>User Details:</h3>
       <ul>
-       <li>name: ${req.body.fname}</li>
-       <li>Email: ${req.body.email}</li>
+      <li><b>Name:</b> ${req.body.fullName}</li>
+      <li><b>Email:</b> ${req.body.email}</li>
+      <li><b>Phone Number:</b> ${req.body.phone}</li>
+      <li><b>Message:</b> ${req.body.message}</li>
        </ul>
-       <h3>Message: ${req.body.message}</h3>
     `;
 
     let transporter = nodemailer.createTransport({
@@ -59,7 +60,7 @@ export async function ProcessContactPage(req: Request, res: Response, next: Next
       // send mail with defined transport object
       let mailOptions = {
         from: 'transactionappg3s4@gmail.com', // sender address
-        to: 'lifeline242734@gmail.com', // list of receivers
+        to: 'transactionappg3s4@gmail.com', // list of receivers
         subject: "Node Testing...", // Subject line
         text: "Hello World",
         html: output
