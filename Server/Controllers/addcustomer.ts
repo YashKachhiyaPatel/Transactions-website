@@ -1,6 +1,8 @@
 import expess,{ Request, Response, NextFunction } from 'express';
 import addcustomer from '../Models/addcustomer';
 import addbusiness from '../Models/addbusiness';
+import bodyParser from 'body-parser';
+import nodemailer from 'nodemailer';
 // import Util Functions
 import { UserDisplayName } from '../Util';
 
@@ -15,6 +17,66 @@ export function DisplayaddcustomerListPage(req: Request, res:Response,next:NextF
         //printing list
         res.render('owner/addcustomer',{title: 'Add Contact', page: 'addcustomer', addcustomer: addcustomerCollection, displayName: UserDisplayName(req) })
     }); 
+}
+
+export async function DisplaySendReminderPage(req: Request, res:Response,next:NextFunction): Promise<void>
+{
+  let id = req.params.id;
+
+  addcustomer.findById(id, {}, {}, async (err, addcustomerItemToEdit) => 
+  {
+     
+      if(err)
+      {
+          console.error(err);
+          res.end(err);
+      }
+     
+      console.log(addcustomer);
+      // show the edit view
+      res.render('owner/reminder', { title: 'Send Reminder', page: 'reminder', addcustomer: addcustomerItemToEdit, displayName: UserDisplayName(req) });
+  });
+}
+
+export async function ProcessSendReminderPage(req: Request, res:Response,next:NextFunction): Promise<void>
+{
+
+  const output = ` 
+      <p>You have new User Request</p>
+      <h3>User Details:</h3>
+      <ul>
+      <li><b>Name:</b> ${req.body.custname}</li>
+      <li><b>Email:</b> ${req.body.custemail}</li>
+      <li><b>Amount:</b> ${req.body.custamount}</li>
+      </ul>
+    `;
+    let transporter = nodemailer.createTransport({
+      service: 'gmail', // true for 465, false for other ports
+      auth: {
+        user: 'transactionappg3s4@gmail.com', // generated ethereal user
+        pass: 'transaction@123', // generated ethereal password
+      }
+    });
+
+    // send mail with defined transport object
+    let mailOptions = {
+      from: 'transactionappg3s4@gmail.com', // sender address
+      to: req.body.custemail, // list of receivers
+      subject: "Node Testing...", // Subject line
+      text: "Hello World",
+      html: output
+    };
+
+    transporter.sendMail(mailOptions, function(err, data){
+        if(err){
+            console.log('error');
+        } else {
+            console.log('success....'+data.response);
+        }
+    })
+    
+    res.redirect('/owner/addcustomer');
+
 }
 
 // Display (E)dit page

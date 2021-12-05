@@ -22,4 +22,6 @@ router.post('/addbusiness/add', index_1.AuthGuard, addbusiness_1.ProcessBusiness
 router.get('/addbusiness/edit/:id', index_1.AuthGuard, addbusiness_1.DisplayaddbusinessEditPage);
 router.post('/addbusiness/edit/:id', index_1.AuthGuard, addbusiness_1.ProcessBusinessEditPage);
 router.get('/addbusiness/delete/:id', index_1.AuthGuard, addbusiness_1.ProcessBusinessDeletePage);
+router.get('/reminder/edit/:id', index_1.AuthGuard, addcustomer_1.DisplaySendReminderPage);
+router.post('/reminder/edit/:id', index_1.AuthGuard, addcustomer_1.ProcessSendReminderPage);
 //# sourceMappingURL=addcustomer.js.map

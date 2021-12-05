@@ -3,7 +3,7 @@ const router = express.Router();
 export default router;
 
 // instantiate an object of type clothing controller
-import { ProcessAddCustomer, DisplayCustomerAddPage, DisplayaddcustomerListPage, DisplayaddcustomerEditPage, ProcessCustomerAddPage, ProcessCustomerDeletePage, ProcessCustomerEditPage } from '../Controllers/addcustomer';
+import { ProcessAddCustomer, DisplayCustomerAddPage, DisplayaddcustomerListPage, DisplayaddcustomerEditPage, ProcessCustomerAddPage, ProcessCustomerDeletePage, ProcessCustomerEditPage, DisplaySendReminderPage, ProcessSendReminderPage } from '../Controllers/addcustomer';
 import { DisplayaddbusinessEditPage, DisplayaddBusinessListPage, DisplayBusinessAddPage, ProcessBusinessAddPage, ProcessBusinessDeletePage, ProcessBusinessEditPage } from '../Controllers/addbusiness';
 
 // import Util Functions
@@ -53,5 +53,9 @@ router.get('/addbusiness/delete/:id', AuthGuard, ProcessBusinessDeletePage);
 
 
 
+/* GET - display /clothing-list/edit/:id page. */
+router.get('/reminder/edit/:id', AuthGuard, DisplaySendReminderPage);
 
+/* POST - process /clothing-list/edit/:id page */
+router.post('/reminder/edit/:id', AuthGuard, ProcessSendReminderPage);
 
