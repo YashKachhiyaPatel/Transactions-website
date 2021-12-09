@@ -12,7 +12,7 @@
         <thead class="table-dark">
           <tr>
             <th scope="col">#</th>
-            <th scope="col">Name</th>
+            <th scope="col">Business Name</th>
             <th scope="col">Address</th>
             <th scope="col">Description</th>
             <th scope="col">Amount</th>
@@ -23,6 +23,7 @@
           </tr>
         </thead>
         <tbody>
+          <% var totamount = 0.0 %>
           <!-- Repeatable Row Template -->
 
           <% for(let count = 0; count < businessCollection.length; count++) { %>
@@ -32,7 +33,8 @@
             <td><%= businessCollection[count].bname %></td>
             <td><%= businessCollection[count].baddress %></td>
             <td><%= businessCollection[count].bdescription %></td>
-            <td><%= amountList[count] %></td>
+            <td>$ <%= amountList[count] %></td>
+            <% totamount += parseInt(amountList[count]) %>
             <% if(businessCollection[count].bnumberofratings > 0) {%> 
               <td><%= businessCollection[count].btotalrating / businessCollection[count].bnumberofratings %></td>
             <% } else { %> 
@@ -52,6 +54,7 @@
           <% } %>
         </tbody>
       </table>
+      <h3 class="text-center">Final Total: $ <%= totamount %></h3>
     </div>
   </div>
 </div>
