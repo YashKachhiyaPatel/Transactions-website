@@ -7,7 +7,7 @@ exports.ProcessBusinessDeletePage = exports.ProcessBusinessEditPage = exports.Di
 const addbusiness_1 = __importDefault(require("../Models/addbusiness"));
 const Util_1 = require("../Util");
 function DisplayaddBusinessListPage(req, res, next) {
-    addbusiness_1.default.find({}, null, { sort: { name: 1 } }, function (err, businessCollection) {
+    addbusiness_1.default.find({ bowner: Util_1.UserUserName(req) }, null, { sort: { name: 1 } }, function (err, businessCollection) {
         if (err) {
             return console.error(err);
         }
@@ -23,7 +23,10 @@ function ProcessBusinessAddPage(req, res, next) {
     let newCustomer = new addbusiness_1.default({
         "bname": req.body.bname,
         "baddress": req.body.baddress,
-        "bdescription": req.body.bdescription
+        "bdescription": req.body.bdescription,
+        "bowner": Util_1.UserUserName(req),
+        "btotalrating": 0,
+        "bnumberofratings": 0
     });
     addbusiness_1.default.create(newCustomer, (err) => {
         if (err) {
@@ -41,7 +44,7 @@ function DisplayaddbusinessEditPage(req, res, next) {
             console.error(err);
             res.end(err);
         }
-        res.render('owner/updatebusiness', { title: 'Update', page: 'updatebusiness', addbusiness: addbusinessItemToEdit, displayName: Util_1.UserDisplayName(req) });
+        res.render('owner/updatebusiness', { title: 'Edit', page: 'updatebusiness', addbusiness: addbusinessItemToEdit, displayName: Util_1.UserDisplayName(req) });
     });
 }
 exports.DisplayaddbusinessEditPage = DisplayaddbusinessEditPage;

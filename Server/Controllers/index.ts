@@ -1,13 +1,10 @@
 import express, { Request, Response, NextFunction } from 'express';
-
+import nodemailer from 'nodemailer';
 import passport from 'passport';
 // create an instance of the User Model
 import User from '../Models/user';
-
-import bodyParser from 'body-parser';
-import nodemailer from 'nodemailer';
 // import Util Functions
-import { UserDisplayName } from '../Util';
+import { UserDisplayName, UserIsOwner } from '../Util';
 
 // Display Functions
 
@@ -35,17 +32,16 @@ export function DisplayContactPage(req: Request, res: Response, next: NextFuncti
 {
     res.render('index', { title: 'Contact Us', page: 'contact', displayName: UserDisplayName(req)  });
 }
-
 export async function ProcessContactPage(req: Request, res: Response, next: NextFunction): Promise<void>
 {
     const output = ` 
-      <p>You have new User Request</p>
-      <h3>User Details:</h3>
+      <p>You have new Request</p>
+      <h3>User Information:</h3>
       <ul>
-      <li><b>Name:</b> ${req.body.fullName}</li>
-      <li><b>Email:</b> ${req.body.email}</li>
-      <li><b>Phone Number:</b> ${req.body.phone}</li>
-      <li><b>Message:</b> ${req.body.message}</li>
+       <li><b>Name:</b> ${req.body.fullName}</li>
+       <li><b>Email:</b> ${req.body.email}</li>
+       <li><b>Phone Number:</b> ${req.body.phone}</li>
+       <li><b>Message:</b> ${req.body.message}</li>
        </ul>
     `;
 
@@ -61,7 +57,7 @@ export async function ProcessContactPage(req: Request, res: Response, next: Next
       let mailOptions = {
         from: 'transactionappg3s4@gmail.com', // sender address
         to: 'transactionappg3s4@gmail.com', // list of receivers
-        subject: "Node Testing...", // Subject line
+        subject: "Message From G3-S4-F21", // Subject line
         text: "Hello World",
         html: output
       };
@@ -80,6 +76,7 @@ export async function ProcessContactPage(req: Request, res: Response, next: Next
 //Authentication
 
 // Authentication functions
+
 export function DisplayLoginPage(req: Request, res: Response, next: NextFunction): void
 {
     if(!req.user)
@@ -87,7 +84,10 @@ export function DisplayLoginPage(req: Request, res: Response, next: NextFunction
         return res.render('index', { title: 'Login', page: 'login', messages: req.flash('loginMessage'), displayName: UserDisplayName(req) });
     }
     
-    return res.redirect('/owner');
+    if(UserIsOwner)
+        return res.redirect('/owner');
+
+    return res.redirect('/customer');
 }
 
 export function ProcessLoginPage(req: Request, res: Response, next: NextFunction): void
@@ -105,7 +105,7 @@ export function ProcessLoginPage(req: Request, res: Response, next: NextFunction
     if(!user)
     {
         req.flash('loginMessage', 'UnAuthenticated Information');
-        return res.redirect('/login');
+        return res.redirect('/error');
     }
 
     req.login(user, (err) => 
@@ -116,8 +116,10 @@ export function ProcessLoginPage(req: Request, res: Response, next: NextFunction
             console.error(err);
             return next(err);
         }
-
-        return res.redirect('/owner');
+        if(UserIsOwner)        
+            return res.redirect('/owner');
+        else
+            return res.redirect('/customer');
     });
    })(req, res, next);
 }
@@ -169,6 +171,32 @@ export function ProcessLogoutPage(req: Request, res: Response, next: NextFunctio
 {
    req.logout();
 
-   res.redirect('/login');
+   res.redirect('/home');
 }
+
+export function DisplayErrorPage(req: Request, res: Response, next: NextFunction): void
+{
+    if(!req.user)
+    {
+        return res.render('index', { title: 'Error', page: 'error', messages: req.flash('error'), displayName: UserDisplayName(req)   });
+    }
+
+    return res.redirect('/error');
+}
+
+export function DisplayChangepasswordPage(req: Request, res: Response, next: NextFunction): void
+{
+    if(!req.user)
+    {
+        return res.render('index', { title: 'Change Password', page: 'changepassword', messages: req.flash('Changepassword'), displayName: UserDisplayName(req)   });
+    }
+
+    return res.redirect('/changepassword');
+}
+
+export function ProcessChangepasswordPage(req: Request, res: Response, next: NextFunction): void
+ {
+   
+ }
+
 

@@ -2,14 +2,14 @@
 <div class="container">
 
 
-<h1><%= title %></h1>
+<h1 class="text-center mb-2">Business Information</h1>
 
 <div class="row">
    
     <div class="col">
 
        <div class="d-flex justify-content-between">
-        <% if(displayName) { %>
+        <% if(addbusiness.length<1) { %>
         
         <a href="/owner/addbusiness/add" id="addButton" class="btn btn-primary mb-1"><i class="fas fa-plus-circle"></i> Add Business</a>
         <% } %>

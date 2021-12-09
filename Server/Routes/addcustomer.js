@@ -4,10 +4,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
+const addbusiness_1 = require("../Controllers/addbusiness");
 const router = express_1.default.Router();
 exports.default = router;
 const addcustomer_1 = require("../Controllers/addcustomer");
-const addbusiness_1 = require("../Controllers/addbusiness");
+const transaction_1 = require("../Controllers/transaction");
 const index_1 = require("../Util/index");
 router.get('/', addcustomer_1.ProcessAddCustomer);
 router.get('/addcustomer/add', index_1.AuthGuard, addcustomer_1.DisplayCustomerAddPage);
@@ -15,6 +16,7 @@ router.get('/addcustomer/edit/:id', index_1.AuthGuard, addcustomer_1.Displayaddc
 router.post('/addcustomer/add', index_1.AuthGuard, addcustomer_1.ProcessCustomerAddPage);
 router.post('/addcustomer/edit/:id', index_1.AuthGuard, addcustomer_1.ProcessCustomerEditPage);
 router.get('/addcustomer/delete/:id', index_1.AuthGuard, addcustomer_1.ProcessCustomerDeletePage);
+router.get('/transactionhistory', index_1.AuthGuard, addcustomer_1.DisplayTransactionHistoryPage);
 router.get('/addcustomer', index_1.AuthGuard, addcustomer_1.DisplayaddcustomerListPage);
 router.get('/addbusiness', index_1.AuthGuard, addbusiness_1.DisplayaddBusinessListPage);
 router.get('/addbusiness/add', index_1.AuthGuard, addbusiness_1.DisplayBusinessAddPage);
@@ -24,4 +26,6 @@ router.post('/addbusiness/edit/:id', index_1.AuthGuard, addbusiness_1.ProcessBus
 router.get('/addbusiness/delete/:id', index_1.AuthGuard, addbusiness_1.ProcessBusinessDeletePage);
 router.get('/reminder/edit/:id', index_1.AuthGuard, addcustomer_1.DisplaySendReminderPage);
 router.post('/reminder/edit/:id', index_1.AuthGuard, addcustomer_1.ProcessSendReminderPage);
+router.get('/transaction/add', index_1.AuthGuard, transaction_1.DisplayTransactionAddPage);
+router.post('/transaction/add', index_1.AuthGuard, transaction_1.ProcessTransactionAddPage);
 //# sourceMappingURL=addcustomer.js.map

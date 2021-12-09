@@ -3,7 +3,7 @@
 
 <div class="container mt-1 backColor">
 <div class="row justify-content-lg-center g-3">
-    <h1><%= title %> Contact Info</h1>
+    <h1><%= title %></h1>
 
     <form method="POST" class="col-lg-6 col-md-10 col-sm-10 backcolor">
         <div class="input-group mb-3">
@@ -15,13 +15,13 @@
         <div class="input-group mb-3">
             <span class="input-group-text" id="inputGroup-name">Email Address</span>
             <input type="email" class="form-control" placeholder="Enter emailAddress" aria-label="custemail" aria-describedby="custemail"
-            name="custemail" value="<%= addcustomer.custemail %>" required>
+            name="custemail" value="<%= addcustomer.custemail %>" readonly>
         </div>
 
          <div class="input-group mb-3">
             <span class="input-group-text" id="inputGroup-name">Amount</span>
             <input type="number" class="form-control" placeholder="Amount" aria-label="custamount" aria-describedby="custamount"
-            name="custamount" value="<%= addcustomer.custamount %>" required>
+            name="custamount" value="<%= addcustomer.custamount %>" readonly>
         </div>
 
        
@@ -30,8 +30,6 @@
 
                 <button type="submit" id="reminderButton" class="btn btn-primary"><i class="fas fa-edit fa-lg"></i> Send</button>
          
-
-
              <button type="button" class="btn btn-outline-warning"><a href="/owner/addcustomer" id="cancelButton" class="update-button"><i class="fas fa-undo"></i> Cancel</a></button>
         </div>
         

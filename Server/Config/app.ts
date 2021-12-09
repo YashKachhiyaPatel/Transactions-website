@@ -25,6 +25,7 @@ import flash from 'connect-flash';
 import indexRouter from '../Routes/index';
 import contactingRounter from '../Routes/contacting';
 import addcustomerRouter from '../Routes/addcustomer';
+import customerDash from '../Routes/customerdash';
 
 // Express Web App Configuration
 const app = express();
@@ -84,6 +85,7 @@ passport.deserializeUser(User.deserializeUser());
 app.use('/', indexRouter);
 app.use('/contacting-list',contactingRounter);
 app.use('/owner',addcustomerRouter);
+app.use('/customer', customerDash);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) 

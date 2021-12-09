@@ -6,14 +6,14 @@ const BusinessSchema = new Schema
     bname: String,
     baddress: String,
     bdescription: String,
-    bowner : {
-        type: Schema.Types.ObjectId,
-      ref: 'User'
-    }
+    bowner :String,
+    btotalrating: Number,
+    bnumberofratings: Number
 },
 {
     collection: "addbusiness"
 });
 
 const Model = mongoose.model("addbusiness", BusinessSchema);
+
 export default Model;

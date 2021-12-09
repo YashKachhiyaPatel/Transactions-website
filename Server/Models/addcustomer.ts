@@ -6,11 +6,8 @@ const AddcustomerSchema = new Schema
     custname: String,
     custnumber: String,
     custemail: String,
-    custamount: String,
-    businessname: {
-        type: Schema.Types.ObjectId,
-        ref: 'addbusiness'
-    }
+    custamount: Number,
+    bowner: String
 },
 {
     collection: "addcustomer"       

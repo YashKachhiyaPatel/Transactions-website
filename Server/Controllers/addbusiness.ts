@@ -1,11 +1,11 @@
 import expess,{ Request, Response, NextFunction } from 'express';
 import addbusiness from '../Models/addbusiness';
 // import Util Functions
-import { UserDisplayName } from '../Util';
+import { UserDisplayName, UserUserName } from '../Util';
 
 export function DisplayaddBusinessListPage(req: Request, res:Response,next:NextFunction): void
 {
-  addbusiness.find({}, null, {sort: {name: 1}},function(err,businessCollection){
+  addbusiness.find({bowner: UserUserName(req)  }, null, {sort: {name: 1}},function(err,businessCollection){
         if(err){
             return console.error(err);
         }
@@ -25,15 +25,18 @@ export function DisplayBusinessAddPage(req: Request, res: Response, next: NextFu
 // Process (C)reate page
 export function ProcessBusinessAddPage(req: Request, res: Response, next: NextFunction): void
 {
-  // instantiate a new Clothing
+  // instantiate a new business
   let newCustomer = new addbusiness
   ({
     "bname": req.body.bname,
       "baddress": req.body.baddress,
-      "bdescription": req.body.bdescription
+      "bdescription": req.body.bdescription,
+      "bowner": UserUserName(req),
+      "btotalrating": 0,
+      "bnumberofratings": 0
   });
 
-  // db.clothing.insert({clothing data is here...})
+ 
   addbusiness.create(newCustomer, (err) => {
     if(err)
     {
@@ -59,16 +62,17 @@ export function DisplayaddbusinessEditPage(req: Request, res: Response, next: Ne
         }
 
         // show the edit view
-        res.render('owner/updatebusiness', { title: 'Update', page: 'updatebusiness', addbusiness: addbusinessItemToEdit, displayName: UserDisplayName(req) });
+        res.render('owner/updatebusiness', { title: 'Edit', page: 'updatebusiness', addbusiness: addbusinessItemToEdit, displayName: UserDisplayName(req) });
     });
 }
+
 
 // Process (E)dit page
 export function ProcessBusinessEditPage(req: Request, res: Response, next: NextFunction): void
 {
     let id = req.params.id;
 
-    // instantiate a new Clothing Item
+    // instantiate a new business Item
     let updatedaddbusinessItem = new addbusiness
     ({
       "_id": id,
@@ -77,7 +81,7 @@ export function ProcessBusinessEditPage(req: Request, res: Response, next: NextF
       "bdescription": req.body.bdescription
     });
   
-    // find the clothing item via db.clothing.update({"_id":id}) and then update
+    // find the business item 
     addbusiness.updateOne({_id: id}, updatedaddbusinessItem, {}, (err) =>{
       if(err)
       {
@@ -95,7 +99,7 @@ export function ProcessBusinessDeletePage(req: Request, res: Response, next: Nex
 {
     let id = req.params.id;
 
-  // db.clothing.remove({"_id: id"})
+  // db.business.remove({"_id: id"})
   addbusiness.remove({_id: id}, (err) => {
     if(err)
     {

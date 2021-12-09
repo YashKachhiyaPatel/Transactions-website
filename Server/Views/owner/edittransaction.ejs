@@ -1,0 +1,44 @@
+<%- include('../components/header.ejs'); %>
+
+<div class="container mt-1 backColor">
+    <div class="row justify-content-lg-center g-3">
+        <h1><%= title %></h1>
+
+        <form method="POST" class="col-lg-6 col-md-10 col-sm-10 backcolor">
+            <div class="input-group mb-3">
+                <span class="input-group-text " id="inputGroup-name">Customer Name</span>
+                <input type="text" class="form-control" placeholder="Enter Customer Name" aria-label="Name" aria-describedby="name"
+                name="customer" value="<%= transaction.customer %>" required>
+            </div>
+
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="inputGroup-name">Customer Email</span>
+                <input type="text" class="form-control" placeholder="Enter Customer Email" aria-label="Email" aria-describedby="email"
+                name="email" value="<%= transaction.email %>" required>
+            </div>
+
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="inputGroup-name">Amount</span>
+                <input type="number" class="form-control" placeholder="Amount" aria-label="Amount" aria-describedby="amount"
+                name="amount" value="<%= transaction.amount %>" required>
+            </div>
+
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="inputGroup-name">Status</span>
+                <input type="text" class="form-control" placeholder="Enter Status" aria-label="Status" aria-describedby="status"
+                name="status" value="<%= transaction.status %>" required>
+            </div>
+
+            <div class="mb-3">
+                <% if(title == "Edit Transaction") { %>
+                    <button type="submit" id="editButton" class="btn btn-primary"><i class="fas fa-edit fa-lg"></i> Edit</button>
+                <% } else { %>
+                    <button type="submit" id="addButton" class="btn btn-primary"><i class="fas fa-plus-circle fa-lg"></i> Add</button>
+                <% } %>  
+                <button type="button" class="btn btn-outline-warning"><a href="/owner/addcustomer" id="cancelButton" class="update-button"><i class="fas fa-undo"></i> Cancel</a></button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<%- include('../components/footer.ejs'); %>

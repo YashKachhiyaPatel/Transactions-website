@@ -29,8 +29,8 @@
             <input type="number" class="form-control" placeholder="Amount" aria-label="custamount" aria-describedby="custamount"
             name="custamount" value="<%= addcustomer.custamount %>" required>
         </div>
-
-        <div class="input-group mb-3">
+       
+          <div class="input-group mb-3">
             <select name="businessname" class="form-control" required>
                <% addbusiness.forEach(b => { %>
                     <% if(b.id == addcustomer.businessname){ %>
@@ -41,7 +41,9 @@
                     <% }) %>
             </select>
         </div>
-         
+
+
+
         <div class="mb-3">
 
          <% if(title == "Edit") { %>

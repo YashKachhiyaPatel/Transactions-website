@@ -1,0 +1,72 @@
+<%- include('../components/header.ejs'); %>
+
+<div class="container mt-1 backColor">
+  <div class="row justify-content-lg-center g-3">
+    <h1><%= title %></h1>
+
+    <form method="POST" class="col-lg-6 col-md-10 col-sm-10 backcolor">
+      <div class="input-group mb-3">
+        <span class="input-group-text" id="inputGroup-name">Business Name</span>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Enter Name"
+          aria-label="Name"
+          aria-describedby="Clothing Name"
+          name="bizname"
+          value="<%= addbusiness.bizname %>"
+          required
+        />
+      </div>
+
+      <div class="input-group mb-3">
+        <span class="input-group-text" id="inputGroup-name"
+          >Business Address</span
+        >
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Enter Address"
+          aria-label="Enter Number"
+          name="bizaddress"
+          value="<%= addbusiness.bizaddress %>"
+          required
+        />
+      </div>
+
+      <div class="input-group mb-3">
+        <span class="input-group-text" id="inputGroup-name"
+          >Business Description</span
+        >
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Enter Description"
+          aria-label="Enter Description"
+          name="bizdescription"
+          value="<%= addbusiness.bizdescription %>"
+          required
+        />
+      </div>
+
+      <div class="mb-3">
+        <% if(title == "Update") { %>
+        <button type="submit" id="editButton" class="btn btn-primary">
+          <i class="fas fa-edit fa-lg"></i> Edit
+        </button>
+        <% } else { %>
+        <button type="submit" id="addButton" class="btn btn-primary">
+          <i class="fas fa-plus-circle fa-lg"></i> Add
+        </button>
+        <% } %>
+
+        <button type="button" class="btn btn-outline-warning">
+          <a href="/customer" id="cancelButton" class="update-button"
+            ><i class="fas fa-undo"></i> Cancel</a
+          >
+        </button>
+      </div>
+    </form>
+  </div>
+  <%- include('../components/footer.ejs'); %>
+</div>
