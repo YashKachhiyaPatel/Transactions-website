@@ -11,9 +11,9 @@ const BusinessSchema = new Schema
     bnumberofratings: Number
 },
 {
-    collection: "addbusiness"
+    collection: "businesses"
 });
 
-const Model = mongoose.model("addbusiness", BusinessSchema);
+const Model = mongoose.model("business", BusinessSchema);
 
 export default Model;

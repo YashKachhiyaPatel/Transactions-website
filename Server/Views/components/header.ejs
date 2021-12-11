@@ -15,7 +15,8 @@
 <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
       <a class="navbar-brand" href="/home">
-      <img src="/Assets/images/logo.jpg" alt="YASH" width="105" height="27" />
+      <lottie-player src="https://assets1.lottiefiles.com/packages/lf20_wmnfnun7.json"  background="transparent" 
+       speed="1"  style="width: 120px; height: 50px; margin: 0%; padding: 0%;" hover loop autoplay></lottie-player>
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -56,6 +57,8 @@
         
           
            <% if(displayName) { %>
+            <li class="navbar-text px-3 "><a href="/owner" class="account-name"><i class="fas fa-lg fa-user"></i>&nbsp;&nbsp;&nbsp;<%= displayName %></a></li>
+
             <li class="nav-item">
             <a class="nav-link" href="/logout"><i class="fas fa-sign-out-alt fa-lg"></i> Logout</a>
           </li>    

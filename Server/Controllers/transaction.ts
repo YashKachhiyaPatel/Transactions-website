@@ -1,6 +1,6 @@
 import expess,{ Request, Response, NextFunction } from 'express';
-import addcustomer from '../Models/addcustomer';
-import addbusiness from '../Models/addbusiness';
+import addcustomer from '../Models/customer';
+import addbusiness from '../Models/business';
 import bodyParser from 'body-parser';
 import nodemailer from 'nodemailer';
 // import Util Functions

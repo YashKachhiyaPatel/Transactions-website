@@ -13,13 +13,13 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ProcessTransactionAddPage = exports.DisplayTransactionAddPage = void 0;
-const addcustomer_1 = __importDefault(require("../Models/addcustomer"));
+const customer_1 = __importDefault(require("../Models/customer"));
 const Util_1 = require("../Util");
 const transaction_1 = __importDefault(require("../Models/transaction"));
 function DisplayTransactionAddPage(req, res, next) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            const customerCollection = yield addcustomer_1.default.find({});
+            const customerCollection = yield customer_1.default.find({});
             res.render('owner/transaction', {
                 title: 'Add',
                 page: 'transaction',

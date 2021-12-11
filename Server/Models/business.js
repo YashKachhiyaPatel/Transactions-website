@@ -13,8 +13,8 @@ const BusinessSchema = new Schema({
     btotalrating: Number,
     bnumberofratings: Number
 }, {
-    collection: "addbusiness"
+    collection: "businesses"
 });
-const Model = mongoose_1.default.model("addbusiness", BusinessSchema);
+const Model = mongoose_1.default.model("business", BusinessSchema);
 exports.default = Model;
-//# sourceMappingURL=addbusiness.js.map
+//# sourceMappingURL=business.js.map

@@ -1,0 +1,31 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = __importDefault(require("express"));
+const business_1 = require("../Controllers/business");
+const router = express_1.default.Router();
+exports.default = router;
+const customer_1 = require("../Controllers/customer");
+const transaction_1 = require("../Controllers/transaction");
+const index_1 = require("../Util/index");
+router.get('/', customer_1.ProcessAddCustomer);
+router.get('/customers-list/add', index_1.AuthGuard, customer_1.DisplayCustomerAddPage);
+router.get('/customers-list/edit/:id', index_1.AuthGuard, customer_1.DisplayaddcustomerEditPage);
+router.post('/customers-list/add', index_1.AuthGuard, customer_1.ProcessCustomerAddPage);
+router.post('/customers-list/edit/:id', index_1.AuthGuard, customer_1.ProcessCustomerEditPage);
+router.get('/customers-list/delete/:id', index_1.AuthGuard, customer_1.ProcessCustomerDeletePage);
+router.get('/transactionhistory', index_1.AuthGuard, customer_1.DisplayTransactionHistoryPage);
+router.get('/customers-list', index_1.AuthGuard, customer_1.DisplayaddcustomerListPage);
+router.get('/business-list', index_1.AuthGuard, business_1.DisplayaddBusinessListPage);
+router.get('/business-list/add', index_1.AuthGuard, business_1.DisplayBusinessAddPage);
+router.post('/business-list/add', index_1.AuthGuard, business_1.ProcessBusinessAddPage);
+router.get('/business-list/edit/:id', index_1.AuthGuard, business_1.DisplayaddbusinessEditPage);
+router.post('/business-list/edit/:id', index_1.AuthGuard, business_1.ProcessBusinessEditPage);
+router.get('/business-list/delete/:id', index_1.AuthGuard, business_1.ProcessBusinessDeletePage);
+router.get('/reminder/edit/:id', index_1.AuthGuard, customer_1.DisplaySendReminderPage);
+router.post('/reminder/edit/:id', index_1.AuthGuard, customer_1.ProcessSendReminderPage);
+router.get('/transaction/add', index_1.AuthGuard, transaction_1.DisplayTransactionAddPage);
+router.post('/transaction/add', index_1.AuthGuard, transaction_1.ProcessTransactionAddPage);
+//# sourceMappingURL=ownerdash.js.map

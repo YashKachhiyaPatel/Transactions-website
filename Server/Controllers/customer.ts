@@ -1,56 +1,33 @@
 import expess,{ Request, Response, NextFunction } from 'express';
-import addcustomer from '../Models/addcustomer';
-import addbusiness from '../Models/addbusiness';
+import customer from '../Models/customer';
+import business from '../Models/business';
 import transaction from '../Models/transaction';
 import bodyParser from 'body-parser';
 import nodemailer from 'nodemailer';
 // import Util Functions
 import { UserDisplayName, UserRole, UserUserName } from '../Util';
 
+
 export async function DisplayaddcustomerListPage(req: Request, res:Response,next:NextFunction)
 {
-  const businessCollection = await addbusiness.find({ bowner: UserUserName(req) })
-   addcustomer.find({bowner: UserUserName(req)}, null, {sort: {name: 1}},function(err,addcustomerCollection){
+  const businessCollection = await business.find({ bowner: UserUserName(req) })
+  customer.find({bowner: UserUserName(req)}, null, {sort: {name: 1}},function(err,addcustomerCollection){
      if(err){
        return console.error(err);
      }
     
      //printing list
-     res.render('owner/addcustomer',{title: 'Add Contact', page: 'addcustomer',addbusiness:businessCollection, addcustomer: addcustomerCollection, displayName: UserDisplayName(req) })
+     res.render('owner/customers-list',{title: 'Add Contact', page: 'customers-list',addbusiness:businessCollection, addcustomer: addcustomerCollection, displayName: UserDisplayName(req) })
    }); 
-  // transaction.aggregate([ { $group: { _id: "$customerid", TotalSum: { $sum: "$amount" } } },{
-  //   $project: {
-  //       _id: 0
-  //   }
-  //   } ]);
-
-
-  // addcustomer.aggregate([     
-  //     { '$sort': { 'custname': 1} }, 
-  //     { '$lookup':         
-  //       {           
-  //         'from': 'addbusiness',
-  //         'localField': 'businessname',
-  //         'foreignField': '_id',
-  //         'as': 'business'
-  //       }
-  //     }     
-  //   ]).exec(function(err, result){
-  //     if(err){
-  //       return res.redirect('/error');
-  //     }
-  
-    //   res.render('owner/addcustomer', {title: 'Add Contact', page: 'addcustomer', addcustomer: result, displayName: UserDisplayName(req), isowner: UserRole(req) });
-    // });
 }
 
 // Display (E)dit page
 export async function DisplayaddcustomerEditPage(req: Request, res: Response, next: NextFunction): Promise<void>
 {
     let id = req.params.id;
-    const businessCollection = await addbusiness.find({ bowner: UserUserName(req) })
+    const businessCollection = await business.find({ bowner: UserUserName(req) })
 
-    addcustomer.findById(id, {}, {}, async (err, addcustomerItemToEdit) => 
+    customer.findById(id, {}, {}, async (err, addcustomerItemToEdit) => 
     {
        
         if(err)
@@ -59,7 +36,7 @@ export async function DisplayaddcustomerEditPage(req: Request, res: Response, ne
             return res.redirect('/error');
         }
        
-        console.log(addcustomer);
+        
         // show the edit view
         res.render('owner/update', { title: 'Edit', page: 'update', addbusiness: businessCollection, addcustomer: addcustomerItemToEdit, displayName: UserDisplayName(req) });
     });
@@ -71,7 +48,7 @@ export function ProcessCustomerEditPage(req: Request, res: Response, next: NextF
     let id = req.params.id;
 
     // instantiate a new customer Item
-    let updatedaddcustomerItem = new addcustomer
+    let updatedaddcustomerItem = new customer
     ({
       "_id": id,
       "custname": req.body.custname,
@@ -82,14 +59,14 @@ export function ProcessCustomerEditPage(req: Request, res: Response, next: NextF
     });
   
     // find the customer item via db.customer.update({"_id":id}) and then update
-    addcustomer.updateOne({_id: id}, updatedaddcustomerItem, {}, (err) =>{
+    customer.updateOne({_id: id}, updatedaddcustomerItem, {}, (err) =>{
       if(err)
       {
         console.error(err);
         return res.redirect('/error');
       }
   
-      res.redirect('/owner/addcustomer');
+      res.redirect('/owner/customers-list');
     });
 }
 
@@ -97,7 +74,7 @@ export function ProcessCustomerEditPage(req: Request, res: Response, next: NextF
 export async function DisplayCustomerAddPage(req: Request, res: Response, next: NextFunction): Promise<void>
 {
   try {
-    const businessCollection = await addbusiness.find({ bowner: UserUserName(req) })
+    const businessCollection = await business.find({ bowner: UserUserName(req) })
     res.render('owner/update', { 
     title: 'Add', 
     page: 'update', 
@@ -105,7 +82,7 @@ export async function DisplayCustomerAddPage(req: Request, res: Response, next: 
     addbusiness: businessCollection,
     displayName: UserDisplayName(req)  });
   } catch  {
-    res.redirect('owner/addcustomer');
+    res.redirect('owner/customers-list');
   }
       
 }
@@ -115,7 +92,7 @@ export async function DisplayCustomerAddPage(req: Request, res: Response, next: 
 export function ProcessCustomerAddPage(req: Request, res: Response, next: NextFunction): void
 {
   // instantiate a new customer
-  let newCustomer = new addcustomer
+  let newCustomer = new customer
   ({
     "custname": req.body.custname,
       "custnumber": req.body.custnumber,
@@ -125,14 +102,14 @@ export function ProcessCustomerAddPage(req: Request, res: Response, next: NextFu
   });
 
   // db.customer.insert({customer data is here...})
-  addcustomer.create(newCustomer, (err) => {
+  customer.create(newCustomer, (err) => {
     if(err)
     {
       console.error(err);
       res.end(err);
     }
 
-    res.redirect('/owner/addcustomer');
+    res.redirect('/owner/customers-list');
   });
 }
 
@@ -142,20 +119,20 @@ export function ProcessCustomerDeletePage(req: Request, res: Response, next: Nex
     let id = req.params.id;
 
   // db.customer.remove({"_id: id"})
-  addcustomer.remove({_id: id}, (err) => {
+  customer.remove({_id: id}, (err) => {
     if(err)
     {
       console.error(err);
       return res.redirect('/error');
     }
 
-    res.redirect('/owner/addcustomer');
+    res.redirect('/owner/customers-list');
   });
 }
 
 export function DisplayTransactionHistoryPage(req: Request, res: Response, next: NextFunction): void 
 {
-  addcustomer.find({bowner: UserUserName(req)}, null, { sort: { name: 1 } }, function (err, addcustomerCollection) {
+  customer.find({bowner: UserUserName(req)}, null, { sort: { name: 1 } }, function (err, addcustomerCollection) {
       if (err) {
         return res.redirect('/error');
       }
@@ -166,7 +143,7 @@ export function DisplayTransactionHistoryPage(req: Request, res: Response, next:
 //dashboard 
 export async function ProcessAddCustomer(req: Request, res: Response, next: NextFunction): Promise<void>
  {
-  const businessCollection = await addbusiness.find({ bowner: UserUserName(req) })
+  const businessCollection = await business.find({ bowner: UserUserName(req) })
   
   res.render('owner', { title: 'DashBoard', page: 'index', displayName: UserDisplayName(req),addbusiness: businessCollection, isowner: UserRole(req)  });
 }
@@ -176,7 +153,7 @@ export async function DisplaySendReminderPage(req: Request, res:Response,next:Ne
 {
   let id = req.params.id;
 
-  addcustomer.findById(id, {}, {}, async (err, addcustomerItemToEdit) => 
+  customer.findById(id, {}, {}, async (err, addcustomerItemToEdit) => 
   {
      
       if(err)
@@ -184,8 +161,7 @@ export async function DisplaySendReminderPage(req: Request, res:Response,next:Ne
           console.error(err);
           res.end(err);
       }
-     
-      console.log(addcustomer);
+    
       // show the edit view
       res.render('owner/reminder', { title: 'Send Reminder', page: 'reminder', addcustomer: addcustomerItemToEdit, displayName: UserDisplayName(req) });
   });
@@ -229,7 +205,7 @@ export async function ProcessSendReminderPage(req: Request, res:Response,next:Ne
         }
     })
 
-    res.redirect('/owner/addcustomer');
+    res.redirect('/owner/customers-list');
 
 }
 

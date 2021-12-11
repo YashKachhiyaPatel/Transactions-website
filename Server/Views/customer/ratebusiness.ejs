@@ -1,14 +1,20 @@
 <%- include('../components/header.ejs'); %>
 
 <div class="container">
-  <div class="text-center mt-5">
-    <h1 class="mb-5">Rate Your Experience</h1>
+  <div class="text-center">
+    <h1 class="">Rate Your Experience</h1>
   </div>
 
   <div class="row justify-content-center">
-    <form method="post" class="col-lg-6 col-md-10 col-sm-10 backcolor">
+
+    <div class="col-lg-6 col-md-10 col-sm-10"> 
+<lottie-player src="https://assets8.lottiefiles.com/packages/lf20_ur7sluxh.json"  background="transparent" 
+  speed="1"  style="width: 400px; height: 450px; margin: 0;"  loop autoplay></lottie-player>
+    </div>
+
+    <form method="post" class="col-lg-6 col-md-10 col-sm-10 backcolor mt-5">
       <select
-        style="background-color: #e0d6c8"
+        style="background-color: #e0d6c8; font-size: 22px; margin-top: 70px;"
         id="rating"
         name="rating"
         class="form-control"
@@ -28,7 +34,7 @@
           </button>
         </div>
         <div class="col-auto">
-          <button type="button" class="btn btn-outline-warning">
+          <button type="button" class="btn btn-warning">
             <a
               href="/customer/businesslist"
               id="cancelButton"

@@ -1,28 +1,38 @@
 <%- include('../components/header.ejs'); %>
 
 <div class="container">
-    <div class="text-center mt-5">
-        <h1>Welcome to Transactions</h1>
+
+    <div class="row">
+
+    <div class="col-lg-4 col-md-10 col-10 mt-1">
+        <lottie-player src="https://assets7.lottiefiles.com/packages/lf20_hadzves0.json"  background="transparent"  
+        speed="1" class="img-hide"  style="width: 350px; height: 600px;"  loop autoplay></lottie-player>
+    </div>
+
+    <div class="col-lg-8 col-md-10 col-10 text-center mt-5">
+        <h1 class="mt-5">Welcome to Transactions</h1>
         
          <% if(isowner == "owner"){ %>
             
 
             <% if(addbusiness.length > 0){ %>
             <h2>Add Customers to  "<%= addbusiness[0].bname %>" to Manage Your Transactions</h2>
-            <a href="/owner/addcustomer" class="btn btn-primary mt-4"><i class="fas fa-plus-circle p-1"></i>Add Customer to <%= addbusiness[0].bname %></a><br>
-             <a href="/owner/addbusiness" class="btn btn-primary mt-3"><%= addbusiness[0].bname %> Details</a><br>
-             <a href="/owner/transactionhistory" class="btn btn-primary mt-3">View Summary</a>
+            <a href="/owner/customers-list" class="btn btn-primary btn-lg mt-4"><i class="fas fa-plus-circle p-1"></i>Add Customer to <%= addbusiness[0].bname %></a><br>
+             <a href="/owner/business-list" class="btn btn-primary btn-lg mt-3"><%= addbusiness[0].bname %> Details</a><br>
+             <a href="/owner/transactionhistory" class="btn btn-primary btn-lg mt-3">View Summary</a>
             <% } else { %>
              <h3>Add Your Business to Manage Your Transactions</h3>
-            <a href="/owner/addbusiness" class="btn btn-primary mt-3"><i class="fas fa-plus-circle"></i> Add business</a><br>
+            <a href="/owner/business-list" class="btn btn-primary btn-lg mt-3"><i class="fas fa-plus-circle"></i> Add business</a><br>
             <% }  %>
             
            
          <% } else { %>
            <h3>Track your Expense</h3>
-          <a href="/customer/businesslist" class="btn btn-primary mt-4"><i class="fas fa-list p-1"></i>Business List</a><br> 
+          <a href="/customer/businesslist" class="btn btn-primary mt-4"><i class="fas fa-list p-1"></i>Transaction Summary</a><br> 
          <% }  %>
     </div>
+
+</div>
   
 </div>
 

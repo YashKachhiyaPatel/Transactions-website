@@ -13,18 +13,18 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ProcessSendReminderPage = exports.DisplaySendReminderPage = exports.ProcessAddCustomer = exports.DisplayTransactionHistoryPage = exports.ProcessCustomerDeletePage = exports.ProcessCustomerAddPage = exports.DisplayCustomerAddPage = exports.ProcessCustomerEditPage = exports.DisplayaddcustomerEditPage = exports.DisplayaddcustomerListPage = void 0;
-const addcustomer_1 = __importDefault(require("../Models/addcustomer"));
-const addbusiness_1 = __importDefault(require("../Models/addbusiness"));
+const customer_1 = __importDefault(require("../Models/customer"));
+const business_1 = __importDefault(require("../Models/business"));
 const nodemailer_1 = __importDefault(require("nodemailer"));
 const Util_1 = require("../Util");
 function DisplayaddcustomerListPage(req, res, next) {
     return __awaiter(this, void 0, void 0, function* () {
-        const businessCollection = yield addbusiness_1.default.find({ bowner: Util_1.UserUserName(req) });
-        addcustomer_1.default.find({ bowner: Util_1.UserUserName(req) }, null, { sort: { name: 1 } }, function (err, addcustomerCollection) {
+        const businessCollection = yield business_1.default.find({ bowner: Util_1.UserUserName(req) });
+        customer_1.default.find({ bowner: Util_1.UserUserName(req) }, null, { sort: { name: 1 } }, function (err, addcustomerCollection) {
             if (err) {
                 return console.error(err);
             }
-            res.render('owner/addcustomer', { title: 'Add Contact', page: 'addcustomer', addbusiness: businessCollection, addcustomer: addcustomerCollection, displayName: Util_1.UserDisplayName(req) });
+            res.render('owner/customers-list', { title: 'Add Contact', page: 'customers-list', addbusiness: businessCollection, addcustomer: addcustomerCollection, displayName: Util_1.UserDisplayName(req) });
         });
     });
 }
@@ -32,13 +32,12 @@ exports.DisplayaddcustomerListPage = DisplayaddcustomerListPage;
 function DisplayaddcustomerEditPage(req, res, next) {
     return __awaiter(this, void 0, void 0, function* () {
         let id = req.params.id;
-        const businessCollection = yield addbusiness_1.default.find({ bowner: Util_1.UserUserName(req) });
-        addcustomer_1.default.findById(id, {}, {}, (err, addcustomerItemToEdit) => __awaiter(this, void 0, void 0, function* () {
+        const businessCollection = yield business_1.default.find({ bowner: Util_1.UserUserName(req) });
+        customer_1.default.findById(id, {}, {}, (err, addcustomerItemToEdit) => __awaiter(this, void 0, void 0, function* () {
             if (err) {
                 console.error(err);
                 return res.redirect('/error');
             }
-            console.log(addcustomer_1.default);
             res.render('owner/update', { title: 'Edit', page: 'update', addbusiness: businessCollection, addcustomer: addcustomerItemToEdit, displayName: Util_1.UserDisplayName(req) });
         }));
     });
@@ -46,7 +45,7 @@ function DisplayaddcustomerEditPage(req, res, next) {
 exports.DisplayaddcustomerEditPage = DisplayaddcustomerEditPage;
 function ProcessCustomerEditPage(req, res, next) {
     let id = req.params.id;
-    let updatedaddcustomerItem = new addcustomer_1.default({
+    let updatedaddcustomerItem = new customer_1.default({
         "_id": id,
         "custname": req.body.custname,
         "custnumber": req.body.custnumber,
@@ -54,19 +53,19 @@ function ProcessCustomerEditPage(req, res, next) {
         "custamount": req.body.custamount,
         "bowner": Util_1.UserUserName(req),
     });
-    addcustomer_1.default.updateOne({ _id: id }, updatedaddcustomerItem, {}, (err) => {
+    customer_1.default.updateOne({ _id: id }, updatedaddcustomerItem, {}, (err) => {
         if (err) {
             console.error(err);
             return res.redirect('/error');
         }
-        res.redirect('/owner/addcustomer');
+        res.redirect('/owner/customers-list');
     });
 }
 exports.ProcessCustomerEditPage = ProcessCustomerEditPage;
 function DisplayCustomerAddPage(req, res, next) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            const businessCollection = yield addbusiness_1.default.find({ bowner: Util_1.UserUserName(req) });
+            const businessCollection = yield business_1.default.find({ bowner: Util_1.UserUserName(req) });
             res.render('owner/update', {
                 title: 'Add',
                 page: 'update',
@@ -76,41 +75,41 @@ function DisplayCustomerAddPage(req, res, next) {
             });
         }
         catch (_a) {
-            res.redirect('owner/addcustomer');
+            res.redirect('owner/customers-list');
         }
     });
 }
 exports.DisplayCustomerAddPage = DisplayCustomerAddPage;
 function ProcessCustomerAddPage(req, res, next) {
-    let newCustomer = new addcustomer_1.default({
+    let newCustomer = new customer_1.default({
         "custname": req.body.custname,
         "custnumber": req.body.custnumber,
         "custemail": req.body.custemail,
         "custamount": req.body.custamount,
         "bowner": Util_1.UserUserName(req),
     });
-    addcustomer_1.default.create(newCustomer, (err) => {
+    customer_1.default.create(newCustomer, (err) => {
         if (err) {
             console.error(err);
             res.end(err);
         }
-        res.redirect('/owner/addcustomer');
+        res.redirect('/owner/customers-list');
     });
 }
 exports.ProcessCustomerAddPage = ProcessCustomerAddPage;
 function ProcessCustomerDeletePage(req, res, next) {
     let id = req.params.id;
-    addcustomer_1.default.remove({ _id: id }, (err) => {
+    customer_1.default.remove({ _id: id }, (err) => {
         if (err) {
             console.error(err);
             return res.redirect('/error');
         }
-        res.redirect('/owner/addcustomer');
+        res.redirect('/owner/customers-list');
     });
 }
 exports.ProcessCustomerDeletePage = ProcessCustomerDeletePage;
 function DisplayTransactionHistoryPage(req, res, next) {
-    addcustomer_1.default.find({ bowner: Util_1.UserUserName(req) }, null, { sort: { name: 1 } }, function (err, addcustomerCollection) {
+    customer_1.default.find({ bowner: Util_1.UserUserName(req) }, null, { sort: { name: 1 } }, function (err, addcustomerCollection) {
         if (err) {
             return res.redirect('/error');
         }
@@ -120,7 +119,7 @@ function DisplayTransactionHistoryPage(req, res, next) {
 exports.DisplayTransactionHistoryPage = DisplayTransactionHistoryPage;
 function ProcessAddCustomer(req, res, next) {
     return __awaiter(this, void 0, void 0, function* () {
-        const businessCollection = yield addbusiness_1.default.find({ bowner: Util_1.UserUserName(req) });
+        const businessCollection = yield business_1.default.find({ bowner: Util_1.UserUserName(req) });
         res.render('owner', { title: 'DashBoard', page: 'index', displayName: Util_1.UserDisplayName(req), addbusiness: businessCollection, isowner: Util_1.UserRole(req) });
     });
 }
@@ -128,12 +127,11 @@ exports.ProcessAddCustomer = ProcessAddCustomer;
 function DisplaySendReminderPage(req, res, next) {
     return __awaiter(this, void 0, void 0, function* () {
         let id = req.params.id;
-        addcustomer_1.default.findById(id, {}, {}, (err, addcustomerItemToEdit) => __awaiter(this, void 0, void 0, function* () {
+        customer_1.default.findById(id, {}, {}, (err, addcustomerItemToEdit) => __awaiter(this, void 0, void 0, function* () {
             if (err) {
                 console.error(err);
                 res.end(err);
             }
-            console.log(addcustomer_1.default);
             res.render('owner/reminder', { title: 'Send Reminder', page: 'reminder', addcustomer: addcustomerItemToEdit, displayName: Util_1.UserDisplayName(req) });
         }));
     });
@@ -173,8 +171,8 @@ function ProcessSendReminderPage(req, res, next) {
                 alert('email sent..');
             }
         });
-        res.redirect('/owner/addcustomer');
+        res.redirect('/owner/customers-list');
     });
 }
 exports.ProcessSendReminderPage = ProcessSendReminderPage;
-//# sourceMappingURL=addcustomer.js.map
+//# sourceMappingURL=customer.js.map

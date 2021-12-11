@@ -229,3 +229,29 @@ from, to { border-color: transparent }
     top: -31px;
     display: none;
 }
+.account-name{
+  color: white;
+  text-decoration: none;
+}
+
+@media all and (max-width:1000px) {
+  .img-hide {
+      display: none;
+  }
+}
+
+@media all and (max-width:600px) {
+  body {
+      font-size: smaller;
+  }
+
+  .small-screen {
+      height: 250px;
+      width: 250px;
+  }
+
+  .small-index {
+      margin-top: 40px;
+  }
+
+}

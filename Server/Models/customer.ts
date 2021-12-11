@@ -10,8 +10,8 @@ const AddcustomerSchema = new Schema
     bowner: String
 },
 {
-    collection: "addcustomer"       
+    collection: "customers"       
 });
 
-const Model = mongoose.model("addcustomer", AddcustomerSchema);
+const Model = mongoose.model("customer", AddcustomerSchema);
 export default Model;

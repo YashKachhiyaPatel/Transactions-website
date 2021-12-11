@@ -12,8 +12,8 @@ const AddcustomerSchema = new Schema({
     custamount: Number,
     bowner: String
 }, {
-    collection: "addcustomer"
+    collection: "customers"
 });
-const Model = mongoose_1.default.model("addcustomer", AddcustomerSchema);
+const Model = mongoose_1.default.model("customer", AddcustomerSchema);
 exports.default = Model;
-//# sourceMappingURL=addcustomer.js.map
+//# sourceMappingURL=customer.js.map

@@ -24,7 +24,7 @@ import flash from 'connect-flash';
 // attach router files
 import indexRouter from '../Routes/index';
 import contactingRounter from '../Routes/contacting';
-import addcustomerRouter from '../Routes/addcustomer';
+import ownerdash from '../Routes/ownerdash';
 import customerDash from '../Routes/customerdash';
 
 // Express Web App Configuration
@@ -84,7 +84,7 @@ passport.deserializeUser(User.deserializeUser());
 // create routing through event handling
 app.use('/', indexRouter);
 app.use('/contacting-list',contactingRounter);
-app.use('/owner',addcustomerRouter);
+app.use('/owner',ownerdash);
 app.use('/customer', customerDash);
 
 // catch 404 and forward to error handler

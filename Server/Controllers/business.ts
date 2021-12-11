@@ -1,16 +1,16 @@
 import expess,{ Request, Response, NextFunction } from 'express';
-import addbusiness from '../Models/addbusiness';
+import business from '../Models/business';
 // import Util Functions
 import { UserDisplayName, UserUserName } from '../Util';
 
 export function DisplayaddBusinessListPage(req: Request, res:Response,next:NextFunction): void
 {
-  addbusiness.find({bowner: UserUserName(req)  }, null, {sort: {name: 1}},function(err,businessCollection){
+  business.find({bowner: UserUserName(req)  }, null, {sort: {name: 1}},function(err,businessCollection){
         if(err){
             return console.error(err);
         }
         //printing list
-        res.render('owner/addbusiness',{title: 'Add Business', page: 'addbusiness', addbusiness: businessCollection, displayName: UserDisplayName(req) })
+        res.render('owner/business-list',{title: 'Add Business', page: 'business-list', addbusiness: businessCollection, displayName: UserDisplayName(req) })
     }); 
 }
 
@@ -26,7 +26,7 @@ export function DisplayBusinessAddPage(req: Request, res: Response, next: NextFu
 export function ProcessBusinessAddPage(req: Request, res: Response, next: NextFunction): void
 {
   // instantiate a new business
-  let newCustomer = new addbusiness
+  let newCustomer = new business
   ({
     "bname": req.body.bname,
       "baddress": req.body.baddress,
@@ -37,14 +37,14 @@ export function ProcessBusinessAddPage(req: Request, res: Response, next: NextFu
   });
 
  
-  addbusiness.create(newCustomer, (err) => {
+  business.create(newCustomer, (err) => {
     if(err)
     {
       console.error(err);
       res.end(err);
     }
 
-    res.redirect('/owner/addbusiness');
+    res.redirect('/owner/business-list');
   });
 }
 
@@ -53,7 +53,7 @@ export function DisplayaddbusinessEditPage(req: Request, res: Response, next: Ne
 {
     let id = req.params.id;
 
-    addbusiness.findById(id, {}, {}, (err, addbusinessItemToEdit) => 
+    business.findById(id, {}, {}, (err, addbusinessItemToEdit) => 
     {
         if(err)
         {
@@ -73,7 +73,7 @@ export function ProcessBusinessEditPage(req: Request, res: Response, next: NextF
     let id = req.params.id;
 
     // instantiate a new business Item
-    let updatedaddbusinessItem = new addbusiness
+    let updatedaddbusinessItem = new business
     ({
       "_id": id,
       "bname": req.body.bname,
@@ -82,14 +82,14 @@ export function ProcessBusinessEditPage(req: Request, res: Response, next: NextF
     });
   
     // find the business item 
-    addbusiness.updateOne({_id: id}, updatedaddbusinessItem, {}, (err) =>{
+    business.updateOne({_id: id}, updatedaddbusinessItem, {}, (err) =>{
       if(err)
       {
         console.error(err);
         res.end(err);
       }
   
-      res.redirect('/owner/addbusiness');
+      res.redirect('/owner/business-list');
     });
 }
 
@@ -100,14 +100,14 @@ export function ProcessBusinessDeletePage(req: Request, res: Response, next: Nex
     let id = req.params.id;
 
   // db.business.remove({"_id: id"})
-  addbusiness.remove({_id: id}, (err) => {
+  business.remove({_id: id}, (err) => {
     if(err)
     {
       console.error(err);
       res.end(err);
     }
 
-    res.redirect('/owner/addbusiness');
+    res.redirect('/owner/business-list');
   });
 }
 

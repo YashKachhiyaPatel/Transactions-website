@@ -1,32 +1,43 @@
 
 
-<div class="container col-lg-7 col-md-8 col-12 mt-1">
-    <h2 class="text-center">
-        Ask Our Team a Question
-    </h2>
-
-<div class="container box shadow p-3">
+<div class="container">
   
-  <form method="POST" action="contact">
- 
-    <div class="form-group mt-2">
-      <input type="text" class="form-control" name="fullName" placeholder="Enter Your Name" required>
-    </div>
+    <div class="row">
+     
+          <div class="col-lg-4 col-md-8 col-12 mt-5">
+            <lottie-player src="https://assets1.lottiefiles.com/private_files/lf30_vrcurbxk.json"  background="transparent"  
+            speed="1"  style="width: 350px; height: 400px;"  loop autoplay></lottie-player>
+            </div> 
+   
 
-    <div class="form-group mt-2">
-      <input type="email" class="form-control" name="email" id="exampleFormControlInput1"
-        placeholder="Enter Email (ex:name@example.com)" required>
-    </div>
+      <div class="container box shadow p-3 col-lg-8 col-md-8 col-12 mt-5">
+        <h2 class="text-center">
+          Ask Our Team a Question
+       </h2>
+        <form method="POST" action="contact">
+      
+          <div class="form-group mt-2">
+            <input type="text" class="form-control" name="fullName" placeholder="Enter Your Name" required>
+          </div>
 
-    <div class="form-group mt-2">
-      <input type="Number" class="form-control" id="phone" name="phone" placeholder="Enter Phone Number" required>
-    </div>
+          <div class="form-group mt-2">
+            <input type="email" class="form-control" name="email" id="exampleFormControlInput1"
+              placeholder="Enter Email (ex:name@example.com)" required>
+          </div>
 
-    <div class="form-group mt-2">
-      <textarea class="form-control" id="exampleFormControlTextarea1" placeholder="Enter Message" name="message" rows="3" required></textarea>
+          <div class="form-group mt-2">
+            <input type="Number" class="form-control" id="phone" name="phone" placeholder="Enter Phone Number" required>
+          </div>
+
+          <div class="form-group mt-2">
+            <textarea class="form-control" id="exampleFormControlTextarea1" placeholder="Enter Message" name="message" rows="3" required></textarea>
+          </div>
+          <br>
+          <button id="submit" type="submit" class="btn btn-primary">Submit</button>
+        </form>
+
+      </div>
+
     </div>
-    <br>
-    <button id="submit" type="submit" class="btn btn-primary">Submit</button>
-  </form>
 
 </div>

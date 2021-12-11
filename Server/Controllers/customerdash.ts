@@ -1,6 +1,6 @@
 import expess,{ Request, Response, NextFunction } from 'express';
-import businessCollection from '../Models/addbusiness';
-import Customer from '../Models/addcustomer';
+import businessCollection from '../Models/business';
+import Customer from '../Models/customer';
 // import Util Functions
 import { UserDisplayName, UserUserName } from '../Util';
 
