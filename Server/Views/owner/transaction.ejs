@@ -13,7 +13,7 @@
                 <div class="input-group mb-3">
                     <select name="customerid" class="form-control" required>   
                         <option>Select Customer Name</option>              
-                        <% addcustomer.forEach(c => { %>
+                        <% customer.forEach(c => { %>
                                 <option label="<%= c.custname  %>" name="<%= c.custname  %>"  value="<%= c.id  %>"></option>
                             <% }) %>                      
                     </select>
@@ -30,8 +30,8 @@
                 <div class="form-group mb-3">
                   <div class="input-group">
                     
-                    <input type="number" class="form-control" id="amount" name="amount"  required
-                    value="" placeholder="Enter amount">
+                    <input type="number" class="form-control" id="amount" name="amount"
+                    value="" placeholder="Enter amount" required>
                   </div>
                  
                 </div>   

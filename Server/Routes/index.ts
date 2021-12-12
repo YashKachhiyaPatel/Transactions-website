@@ -1,29 +1,23 @@
 import express from 'express';
 import { DisplayHomePage, DisplayAboutPage, DisplayProjectsPage, DisplayServicesPage, DisplayContactPage,ProcessContactPage, DisplayLoginPage, ProcessLoginPage, ProcessLogoutPage, ProcessRegisterPage, DisplayRegisterPage, DisplayChangepasswordPage, ProcessChangepasswordPage, DisplayErrorPage} from '../Controllers';
 const router = express.Router();
+import { AuthGuard } from '../Util';
 export default router;
 
 
 /* GET home page. */
-router.get('/', DisplayHomePage);
+router.get('/',AuthGuard, DisplayHomePage);
 
 /* GET home page. */
-router.get('/home', DisplayHomePage);
+router.get('/home',AuthGuard, DisplayHomePage);
 
 /* GET about page. */
-router.get('/about', DisplayAboutPage);
-
-/* GET projects page. */
-router.get('/projects', DisplayProjectsPage);
-
-/* GET services page. */
-router.get('/services', DisplayServicesPage);
+router.get('/about',AuthGuard, DisplayAboutPage);
 
 /* GET contact page. */
-router.get('/contact', DisplayContactPage);
+router.get('/contact',AuthGuard, DisplayContactPage);
 /* Post contact page. */
-router.post('/contact', ProcessContactPage);
-
+router.post('/contact',AuthGuard, ProcessContactPage);
 
 /* GET - display Login page - /login */
 router.get('/login', DisplayLoginPage);
@@ -44,9 +38,9 @@ router.get('/register', DisplayRegisterPage);
 
 
 /* GET - display changepassword page -/changepassword */
-router.get('/changepassword', DisplayChangepasswordPage);
+router.get('/changepassword',AuthGuard, DisplayChangepasswordPage);
 /* POST - process Register page when user presses Register button */
-router.post('/changepassword', ProcessChangepasswordPage);
+router.post('/changepassword',AuthGuard, ProcessChangepasswordPage);
 
 /* GET - display error page*/
 router.get('/error', DisplayErrorPage);

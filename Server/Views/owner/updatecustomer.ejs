@@ -14,7 +14,8 @@
 
         <div class="input-group mb-3">
             <span class="input-group-text" id="inputGroup-name">Contact Number</span>
-            <input type="number" class="form-control" placeholder="Enter Number" aria-label="Enter Number" aria-describedby="number"
+            <input type="tel" class="form-control" placeholder="Enter Number (ex:243-524-4253)" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+             aria-label="Enter Number" aria-describedby="number"
             name="custnumber" value="<%= addcustomer.custnumber %>" required>
         </div>
 

@@ -92,7 +92,7 @@ function ProcessLoginPage(req, res, next) {
         }
         if (!user) {
             req.flash('loginMessage', 'UnAuthenticated Information');
-            return res.redirect('/error');
+            return res.render('index', { title: 'login-error', page: 'error', messages: req.flash('loginMessage'), displayName: Util_1.UserDisplayName(req) });
         }
         req.login(user, (err) => {
             if (err) {
@@ -121,19 +121,29 @@ function ProcessRegisterPage(req, res, next) {
         displayName: req.body.FirstName + " " + req.body.LastName,
         isowner: req.body.isowner
     });
-    user_1.default.register(newUser, req.body.password, (err) => {
-        if (err) {
-            console.error('Error: Inserting New User');
-            if (err.name == "UserExistsError") {
-                console.error('Error: User Already Exists');
+    if (req.body.emailAddress != req.body.username) {
+        req.flash('emailMessage', 'Email does not match');
+        return res.render('index', { title: 'register-error', page: 'error', messages: req.flash('emailMessage'), displayName: Util_1.UserDisplayName(req) });
+    }
+    else if (req.body.password != req.body.confirmPassword) {
+        req.flash('passwordMessage', 'Password does not match');
+        return res.render('index', { title: 'register-error', page: 'error', messages: req.flash('passwordMessage'), displayName: Util_1.UserDisplayName(req) });
+    }
+    else {
+        user_1.default.register(newUser, req.body.password, (err) => {
+            if (err) {
+                console.error('Error: Inserting New User');
+                if (err.name == "UserExistsError") {
+                    console.error('Error: User Already Exists');
+                }
+                req.flash('registerMessage', 'Registration Error');
+                return res.render('index', { title: 'register-error', page: 'error', messages: req.flash('registerMessage'), displayName: Util_1.UserDisplayName(req) });
             }
-            req.flash('registerMessage', 'Registration Error');
-            return res.redirect('/register');
-        }
-        return passport_1.default.authenticate('local')(req, res, () => {
-            return res.redirect('/owner');
+            return passport_1.default.authenticate('local')(req, res, () => {
+                return res.redirect('/owner');
+            });
         });
-    });
+    }
 }
 exports.ProcessRegisterPage = ProcessRegisterPage;
 function ProcessLogoutPage(req, res, next) {
@@ -156,6 +166,19 @@ function DisplayChangepasswordPage(req, res, next) {
 }
 exports.DisplayChangepasswordPage = DisplayChangepasswordPage;
 function ProcessChangepasswordPage(req, res, next) {
+    passport_1.default.authenticate('local', (err, user, info) => {
+        if (err) {
+            console.error(err);
+            return next(err);
+        }
+        if (!user) {
+            req.flash('loginMessage', 'UnAuthenticated Information');
+            return res.render('index', { title: 'login-error', page: 'error', messages: req.flash('loginMessage'), displayName: Util_1.UserDisplayName(req) });
+        }
+        else {
+            return res.redirect('/login');
+        }
+    });
 }
 exports.ProcessChangepasswordPage = ProcessChangepasswordPage;
 //# sourceMappingURL=index.js.map

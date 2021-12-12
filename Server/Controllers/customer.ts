@@ -32,13 +32,14 @@ export async function DisplayaddcustomerEditPage(req: Request, res: Response, ne
        
         if(err)
         {
-            console.error(err);
-            return res.redirect('/error');
+          req.flash('customerMessage', 'Unable to display customer');
+          return res.render('index', { title: 'customer-error', page: 'error', messages: req.flash('customerMessage'), displayName: UserDisplayName(req)   });
+   
         }
        
         
         // show the edit view
-        res.render('owner/update', { title: 'Edit', page: 'update', addbusiness: businessCollection, addcustomer: addcustomerItemToEdit, displayName: UserDisplayName(req) });
+        res.render('owner/updatecustomer', { title: 'Edit', page: 'updatecustomer', addbusiness: businessCollection, addcustomer: addcustomerItemToEdit, displayName: UserDisplayName(req) });
     });
 }
 
@@ -62,8 +63,9 @@ export function ProcessCustomerEditPage(req: Request, res: Response, next: NextF
     customer.updateOne({_id: id}, updatedaddcustomerItem, {}, (err) =>{
       if(err)
       {
-        console.error(err);
-        return res.redirect('/error');
+        req.flash('customerMessage', 'Unable to display customer');
+          return res.render('index', { title: 'customer-error', page: 'error', messages: req.flash('customerMessage'), displayName: UserDisplayName(req)   });
+   
       }
   
       res.redirect('/owner/customers-list');
@@ -75,9 +77,9 @@ export async function DisplayCustomerAddPage(req: Request, res: Response, next: 
 {
   try {
     const businessCollection = await business.find({ bowner: UserUserName(req) })
-    res.render('owner/update', { 
+    res.render('owner/updatecustomer', { 
     title: 'Add', 
-    page: 'update', 
+    page: 'updatecustomer', 
     addcustomer: '', 
     addbusiness: businessCollection,
     displayName: UserDisplayName(req)  });
@@ -105,8 +107,9 @@ export function ProcessCustomerAddPage(req: Request, res: Response, next: NextFu
   customer.create(newCustomer, (err) => {
     if(err)
     {
-      console.error(err);
-      res.end(err);
+      req.flash('customerAddMessage', 'Unable to display customer');
+          return res.render('index', { title: 'customer-add-error', page: 'error', messages: req.flash('customerAddMessage'), displayName: UserDisplayName(req)   });
+   
     }
 
     res.redirect('/owner/customers-list');
@@ -122,8 +125,9 @@ export function ProcessCustomerDeletePage(req: Request, res: Response, next: Nex
   customer.remove({_id: id}, (err) => {
     if(err)
     {
-      console.error(err);
-      return res.redirect('/error');
+      req.flash('customerDeleteMessage', 'Unable to delete customer');
+          return res.render('index', { title: 'customer-delete-error', page: 'error', messages: req.flash('customerDeleteMessage'), displayName: UserDisplayName(req)   });
+   
     }
 
     res.redirect('/owner/customers-list');

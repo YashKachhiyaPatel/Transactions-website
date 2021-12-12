@@ -20,7 +20,7 @@ function DisplayBusinessAddPage(req, res, next) {
 }
 exports.DisplayBusinessAddPage = DisplayBusinessAddPage;
 function ProcessBusinessAddPage(req, res, next) {
-    let newCustomer = new business_1.default({
+    let newBusiness = new business_1.default({
         "bname": req.body.bname,
         "baddress": req.body.baddress,
         "bdescription": req.body.bdescription,
@@ -28,10 +28,10 @@ function ProcessBusinessAddPage(req, res, next) {
         "btotalrating": 0,
         "bnumberofratings": 0
     });
-    business_1.default.create(newCustomer, (err) => {
+    business_1.default.create(newBusiness, (err) => {
         if (err) {
-            console.error(err);
-            res.end(err);
+            req.flash('businessAddMessage', 'Unable to add business');
+            return res.render('index', { title: 'business-add-error', page: 'error', messages: req.flash('businessAddMessage'), displayName: Util_1.UserDisplayName(req) });
         }
         res.redirect('/owner/business-list');
     });
@@ -58,8 +58,8 @@ function ProcessBusinessEditPage(req, res, next) {
     });
     business_1.default.updateOne({ _id: id }, updatedaddbusinessItem, {}, (err) => {
         if (err) {
-            console.error(err);
-            res.end(err);
+            req.flash('businessUpdateMessage', 'Unable to update business');
+            return res.render('index', { title: 'business-update-error', page: 'error', messages: req.flash('businessUpdateMessage'), displayName: Util_1.UserDisplayName(req) });
         }
         res.redirect('/owner/business-list');
     });
@@ -69,8 +69,8 @@ function ProcessBusinessDeletePage(req, res, next) {
     let id = req.params.id;
     business_1.default.remove({ _id: id }, (err) => {
         if (err) {
-            console.error(err);
-            res.end(err);
+            req.flash('businessDeleteMessage', 'Unable to delete business');
+            return res.render('index', { title: 'business-delete-error', page: 'error', messages: req.flash('businessDeleteMessage'), displayName: Util_1.UserDisplayName(req) });
         }
         res.redirect('/owner/business-list');
     });

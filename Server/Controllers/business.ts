@@ -26,7 +26,7 @@ export function DisplayBusinessAddPage(req: Request, res: Response, next: NextFu
 export function ProcessBusinessAddPage(req: Request, res: Response, next: NextFunction): void
 {
   // instantiate a new business
-  let newCustomer = new business
+  let newBusiness = new business
   ({
     "bname": req.body.bname,
       "baddress": req.body.baddress,
@@ -37,11 +37,11 @@ export function ProcessBusinessAddPage(req: Request, res: Response, next: NextFu
   });
 
  
-  business.create(newCustomer, (err) => {
+  business.create(newBusiness, (err) => {
     if(err)
     {
-      console.error(err);
-      res.end(err);
+      req.flash('businessAddMessage', 'Unable to add business');
+      return res.render('index', { title: 'business-add-error', page: 'error', messages: req.flash('businessAddMessage'), displayName: UserDisplayName(req)   });
     }
 
     res.redirect('/owner/business-list');
@@ -85,8 +85,9 @@ export function ProcessBusinessEditPage(req: Request, res: Response, next: NextF
     business.updateOne({_id: id}, updatedaddbusinessItem, {}, (err) =>{
       if(err)
       {
-        console.error(err);
-        res.end(err);
+        req.flash('businessUpdateMessage', 'Unable to update business');
+        return res.render('index', { title: 'business-update-error', page: 'error', messages: req.flash('businessUpdateMessage'), displayName: UserDisplayName(req)   });
+  
       }
   
       res.redirect('/owner/business-list');
@@ -103,8 +104,9 @@ export function ProcessBusinessDeletePage(req: Request, res: Response, next: Nex
   business.remove({_id: id}, (err) => {
     if(err)
     {
-      console.error(err);
-      res.end(err);
+      req.flash('businessDeleteMessage', 'Unable to delete business');
+      return res.render('index', { title: 'business-delete-error', page: 'error', messages: req.flash('businessDeleteMessage'), displayName: UserDisplayName(req)   });
+
     }
 
     res.redirect('/owner/business-list');

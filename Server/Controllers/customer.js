@@ -35,10 +35,10 @@ function DisplayaddcustomerEditPage(req, res, next) {
         const businessCollection = yield business_1.default.find({ bowner: Util_1.UserUserName(req) });
         customer_1.default.findById(id, {}, {}, (err, addcustomerItemToEdit) => __awaiter(this, void 0, void 0, function* () {
             if (err) {
-                console.error(err);
-                return res.redirect('/error');
+                req.flash('customerMessage', 'Unable to display customer');
+                return res.render('index', { title: 'customer-error', page: 'error', messages: req.flash('customerMessage'), displayName: Util_1.UserDisplayName(req) });
             }
-            res.render('owner/update', { title: 'Edit', page: 'update', addbusiness: businessCollection, addcustomer: addcustomerItemToEdit, displayName: Util_1.UserDisplayName(req) });
+            res.render('owner/updatecustomer', { title: 'Edit', page: 'updatecustomer', addbusiness: businessCollection, addcustomer: addcustomerItemToEdit, displayName: Util_1.UserDisplayName(req) });
         }));
     });
 }
@@ -55,8 +55,8 @@ function ProcessCustomerEditPage(req, res, next) {
     });
     customer_1.default.updateOne({ _id: id }, updatedaddcustomerItem, {}, (err) => {
         if (err) {
-            console.error(err);
-            return res.redirect('/error');
+            req.flash('customerMessage', 'Unable to display customer');
+            return res.render('index', { title: 'customer-error', page: 'error', messages: req.flash('customerMessage'), displayName: Util_1.UserDisplayName(req) });
         }
         res.redirect('/owner/customers-list');
     });
@@ -66,9 +66,9 @@ function DisplayCustomerAddPage(req, res, next) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
             const businessCollection = yield business_1.default.find({ bowner: Util_1.UserUserName(req) });
-            res.render('owner/update', {
+            res.render('owner/updatecustomer', {
                 title: 'Add',
-                page: 'update',
+                page: 'updatecustomer',
                 addcustomer: '',
                 addbusiness: businessCollection,
                 displayName: Util_1.UserDisplayName(req)
@@ -90,8 +90,8 @@ function ProcessCustomerAddPage(req, res, next) {
     });
     customer_1.default.create(newCustomer, (err) => {
         if (err) {
-            console.error(err);
-            res.end(err);
+            req.flash('customerAddMessage', 'Unable to display customer');
+            return res.render('index', { title: 'customer-add-error', page: 'error', messages: req.flash('customerAddMessage'), displayName: Util_1.UserDisplayName(req) });
         }
         res.redirect('/owner/customers-list');
     });
@@ -101,8 +101,8 @@ function ProcessCustomerDeletePage(req, res, next) {
     let id = req.params.id;
     customer_1.default.remove({ _id: id }, (err) => {
         if (err) {
-            console.error(err);
-            return res.redirect('/error');
+            req.flash('customerDeleteMessage', 'Unable to delete customer');
+            return res.render('index', { title: 'customer-delete-error', page: 'error', messages: req.flash('customerDeleteMessage'), displayName: Util_1.UserDisplayName(req) });
         }
         res.redirect('/owner/customers-list');
     });

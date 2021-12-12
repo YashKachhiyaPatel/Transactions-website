@@ -4,7 +4,7 @@ import passport from 'passport';
 // create an instance of the User Model
 import User from '../Models/user';
 // import Util Functions
-import { UserDisplayName, UserIsOwner } from '../Util';
+import { UserDisplayName, UserIsOwner, UserUserName } from '../Util';
 
 // Display Functions
 
@@ -105,7 +105,8 @@ export function ProcessLoginPage(req: Request, res: Response, next: NextFunction
     if(!user)
     {
         req.flash('loginMessage', 'UnAuthenticated Information');
-        return res.redirect('/error');
+        return res.render('index', { title: 'login-error', page: 'error', messages: req.flash('loginMessage'), displayName: UserDisplayName(req)   });
+ 
     }
 
     req.login(user, (err) => 
@@ -145,26 +146,43 @@ export function ProcessRegisterPage(req: Request, res: Response, next: NextFunct
         isowner: req.body.isowner
    });
 
-   User.register(newUser, req.body.password, (err) =>
-   {
-        if(err)
-        {
-            console.error('Error: Inserting New User');
-            if(err.name == "UserExistsError")
-            {
-                console.error('Error: User Already Exists');
-            }
-            req.flash('registerMessage', 'Registration Error');
+    if(req.body.emailAddress != req.body.username){
+        req.flash('emailMessage', 'Email does not match');
+ 
+        return res.render('index', { title: 'register-error', page: 'error', messages: req.flash('emailMessage'), displayName: UserDisplayName(req)   });
 
-            return res.redirect('/register');
-        }
+    }
+    else if(req.body.password != req.body.confirmPassword){
+        req.flash('passwordMessage', 'Password does not match');
+        return res.render('index', { title: 'register-error', page: 'error', messages: req.flash('passwordMessage'), displayName: UserDisplayName(req)   });
 
-        // after successful registration - login the user
-        return passport.authenticate('local')(req, res, () => 
-        {
-            return res.redirect('/owner');
-        });
-   });
+    }
+     else
+    {
+    User.register(newUser, req.body.password, (err) =>
+    {
+         if(err)
+         {
+             console.error('Error: Inserting New User');
+             if(err.name == "UserExistsError")
+             {
+                 console.error('Error: User Already Exists');
+             }
+             req.flash('registerMessage', 'Registration Error');
+ 
+             return res.render('index', { title: 'register-error', page: 'error', messages: req.flash('registerMessage'), displayName: UserDisplayName(req)   });
+ 
+         }
+ 
+         // after successful registration - login the user
+         return passport.authenticate('local')(req, res, () => 
+         {
+             return res.redirect('/owner');
+         });
+    });
+
+ }
+  
 }
 
 export function ProcessLogoutPage(req: Request, res: Response, next: NextFunction): void
@@ -196,7 +214,29 @@ export function DisplayChangepasswordPage(req: Request, res: Response, next: Nex
 
 export function ProcessChangepasswordPage(req: Request, res: Response, next: NextFunction): void
  {
-   
- }
+    passport.authenticate('local', (err, user, info) => 
+    {
+     // are there any server errors?
+     if(err)
+     {
+         console.error(err);
+         return next(err);
+     }
+ 
+     // are there any login errors?
+     if(!user)
+     {
+         req.flash('loginMessage', 'UnAuthenticated Information');
+         return res.render('index', { title: 'login-error', page: 'error', messages: req.flash('loginMessage'), displayName: UserDisplayName(req)   });
+  
+     }
+     else{
+        
+        
+    return res.redirect('/login');
+     }
+ });
+
+}
 
 

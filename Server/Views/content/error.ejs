@@ -1,13 +1,34 @@
 <div class="container mt-3">
 
   <div class="text-center">
-  <h2 >Error!! Something is not right. Go Back!</h2>
+    <% if(messages.length > 0) { %>
+      <div id="messageArea" class="alert alert-danger">
+        <%= messages %>
+      </div>
+      <% } %>
 </div>
 
 <div class="text-center mt-5">
-  <a  href="/login">
-    <button type="button" class="btn btn-primary btn-lg">Back</button>
-  </a>
+
+  
+    <% if(title == "login-error") { %>
+      <a  href="/login">
+        <button type="button" class="btn btn-primary btn-lg">Back</button>
+      </a>
+  <% }  %>
+
+  <% if(title == "register-error") { %>
+    <a  href="/register">
+      <button type="button" class="btn btn-primary btn-lg">Back</button>
+    </a>
+  <% } %> 
+
+  <% if(title == "customer-error" || title == "customer-add-error" || title == "customer-delete-error" || title == "business-add-error" || title == "business-delete-error" || title == "business-update-error" ) { %>
+    <a  href="/owner">
+      <button type="button" class="btn btn-primary btn-lg">Back</button>
+    </a> 
+   <% }  %>
+
 </div> 
   
 </div>
